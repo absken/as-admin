@@ -1,0 +1,8 @@
+{
+  "watch": [
+    "serverMock.js",
+    "controllers/"
+  ],
+  "ext": "js, css",
+  "delay": "2000"
+}

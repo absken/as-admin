@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "first_name": "James",
+        "last_name": "Butterburg",
+        "address": {
+            "street": "6649 N Blue Gum St",
+            "city": "New Orleans",
+            "state": "LA",
+            "zip": "70116"
+        }
+    },
+    {
+        "id": 2,
+        "first_name": "Josephine",
+        "last_name": "Darakjy",
+        "address": {
+            "street": "4 B Blue Ridge Blvd",
+            "city": "Brighton",
+            "state": "MI",
+            "zip": "48116"
+        }
+    }
+]

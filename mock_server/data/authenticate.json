@@ -1,0 +1,16 @@
+{
+  "userInfo": {
+    "email": "kangchol30@gmail.com",
+    "firstName": "Ken",
+    "lastName": "Kang"
+  },
+  "roles": [
+    "amin_user"
+  ],
+  "permissions": [
+    "form_create", "form_edit", "form_delete"
+  ],
+  "created": "2020-09-23T03:41:59.631Z",
+  "modified": "2020-09-23T03:41:59.637Z",
+  "metadata": {}
+}
