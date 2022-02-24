@@ -9,7 +9,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'airbnb',
     'airbnb-typescript',
-    'prettier'
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,16 +18,13 @@ module.exports = {
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'no-use-before-define': 'off',
     'jsx-a11y/href-no-hash': ['off'],
-    'react/jsx-filename-extension': [
-      'warn',
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/react-in-jsx-scope': 0,
     'react-hooks/rules-of-hooks': 0,
     'react-hooks/exhaustive-deps': [
@@ -42,20 +39,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-unused-vars': 0,
-    'max-len': [
-      'warn',
-      {
-        code: 80,
-        tabWidth: 2,
-        comments: 80,
-        ignoreComments: false,
-        ignoreTrailingComments: true,
-        ignoreUrls: true,
-        ignoreStrings: true,
-        ignoreTemplateLiterals: true,
-        ignoreRegExpLiterals: true,
-      },
-    ],
     'no-use-before-define': 0,
     'import/no-cycle': 0,
     'import/no-useless-path-segments': 0, // Allows us to import as './' instead of '.'
