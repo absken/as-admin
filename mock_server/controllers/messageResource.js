@@ -15,16 +15,15 @@ function getMessageResource(req, res) {
   }
 
   res.setHeader('x-jwt-token', conf.auth.xJwtToken);
-  setTimeout( () => {
+  setTimeout(() => {
     res.json({
-      status: "success",
-      message: "",
+      status: 'success',
+      message: '',
       data: {
-        messageResources: getJsonFromFile('./data/messageResource.json')
-      }
+        messageResources: getJsonFromFile('./data/messageResource.json'),
+      },
     });
   }, 2000);
 }
 
 export default router;
-

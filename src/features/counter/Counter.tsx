@@ -21,6 +21,7 @@ export function Counter() {
   return (
     <div>
       <div className={styles.row}>
+        {/* eslint-disable-next-line react/button-has-type */}
         <button
           className={styles.button}
           aria-label="Decrement value"
@@ -29,6 +30,7 @@ export function Counter() {
           -
         </button>
         <span className={styles.value}>{count}</span>
+        {/* eslint-disable-next-line react/button-has-type */}
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -44,22 +46,22 @@ export function Counter() {
           value={incrementAmount}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
+        {/* eslint-disable-next-line react/button-has-type */}
         <button
           className={styles.button}
           onClick={() => dispatch(incrementByAmount(incrementValue))}
         >
           Add Amount
         </button>
+        {/* eslint-disable-next-line react/button-has-type */}
         <button
           className={styles.asyncButton}
           onClick={() => dispatch(incrementAsync(incrementValue))}
         >
           Add Async
         </button>
-        <button
-          className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
-        >
+        {/* eslint-disable-next-line react/button-has-type */}
+        <button className={styles.button} onClick={() => dispatch(incrementIfOdd(incrementValue))}>
           Add If Odd
         </button>
       </div>
