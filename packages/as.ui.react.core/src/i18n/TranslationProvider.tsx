@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import { useSafeSetState } from '@as/ui-react-bs';
+import { useSafeSetState } from '../utils';
 import { TranslationContext } from './TranslationContext';
 import { I18nProvider } from '../types';
 

@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import cookies from 'browser-cookies';
 
 import { defaultConfig } from '../../config';
@@ -16,23 +17,86 @@ export const AUTH_CHECK = '[Auth] Auth Check';
 export const EXTEND_SESSION = '[Auth] Extend Session';
 export const EXTEND_SESSION_SUCCESS = '[Auth] Extend Session Success';
 
+export interface ResetUserAction {
+  readonly type: typeof RESET_USER;
+}
+
+export interface ClearUserErrorAction {
+  readonly type: typeof CLEAR_USER_ERROR;
+}
+
+export interface UserFailureAction {
+  readonly type: typeof USER_FAILURE;
+  readonly payload: any;
+  readonly meta: any;
+}
+
+export interface UserFailureCustomAction {
+  readonly type: typeof USER_FAILURE_CUSTOM;
+  readonly payload: any;
+}
+
+export interface RequestUserAction {
+  readonly type: typeof REQUEST_USER;
+}
+
+export interface RequestUserSuccessAction {
+  readonly type: typeof REQUEST_USER_SUCCESS;
+  readonly payload: any;
+}
+
+export interface SetUserRollsAction {
+  readonly type: typeof SET_USER_ROLLS;
+  readonly payload: any;
+}
+
+export interface SetUserPermissionsAction {
+  readonly type: typeof SET_USER_PERMISSIONS;
+  readonly payload: any;
+}
+
+export interface AuthCheckAction {
+  readonly type: typeof AUTH_CHECK;
+  readonly payload: any;
+}
+
+export interface ExtendSessionAction {
+  readonly type: typeof EXTEND_SESSION;
+}
+
+export interface ExtendSessionSuccessAction {
+  readonly type: typeof EXTEND_SESSION_SUCCESS;
+}
+
+export type AuthActionTypes =
+  | ResetUserAction
+  | ClearUserErrorAction
+  | UserFailureAction
+  | UserFailureCustomAction
+  | RequestUserAction
+  | RequestUserSuccessAction
+  | SetUserRollsAction
+  | SetUserPermissionsAction
+  | AuthCheckAction
+  | ExtendSessionAction
+  | ExtendSessionSuccessAction;
+
 export const resetUserAction = () => ({
   type: RESET_USER,
 });
 
-export const clearUserErrorAction = (name) => ({
+export const clearUserErrorAction = (name: string) => ({
   type: CLEAR_USER_ERROR,
-  name,
 });
 
 // use meta to handle an error globally
-export const userFailureAction = (error) => ({
+export const userFailureAction = (error: any) => ({
   type: USER_FAILURE,
   payload: { error },
   meta: { error },
 });
 
-export const userFailureCustomAction = (error) => ({
+export const userFailureCustomAction = (error: any) => ({
   type: USER_FAILURE_CUSTOM,
   payload: { error },
 });
@@ -41,22 +105,22 @@ export const requestUserAction = () => ({
   type: REQUEST_USER,
 });
 
-export const requestUserSuccessAction = (user) => ({
+export const requestUserSuccessAction = (user: any) => ({
   type: REQUEST_USER_SUCCESS,
   payload: { user },
 });
 
-export const setUserRollsAction = (roles) => ({
+export const setUserRollsAction = (roles: any) => ({
   type: SET_USER_ROLLS,
   payload: { roles },
 });
 
-export const setUserPermissionsAction = (permissions) => ({
+export const setUserPermissionsAction = (permissions: any) => ({
   type: SET_USER_PERMISSIONS,
   payload: { permissions },
 });
 
-export const authCheckAction = (user) => ({
+export const authCheckAction = (user: any) => ({
   type: AUTH_CHECK,
   payload: { user },
 });
@@ -73,8 +137,8 @@ export const extendSessionSuccessAction = () => ({
 // Side effects
 ///////////////////////////////////////////////////////////////////////////
 export const authLogin =
-  (data, next: Next = () => {}) =>
-  (dispatch) => {
+  (data: any, next: Next = () => {}) =>
+  (dispatch: Dispatch<any>) => {
     dispatch(requestUserAction());
 
     return fetchUtils
@@ -106,8 +170,8 @@ export const authLogin =
   };
 
 export const getUserPermissions =
-  (params, next: Next = () => {}) =>
-  (dispatch) => {
+  (params: any, next: Next = () => {}) =>
+  (dispatch: Dispatch<any>) => {
     const user: any = localStorage.getItem(defaultConfig.auth.authKey);
     let permissions;
     if (user) {
@@ -131,8 +195,8 @@ const clearLocalStorage = () => {
 };
 
 export const authLoginCheck =
-  (params, next: Next = () => {}) =>
-  (dispatch) => {
+  (params: any, next: Next = () => {}) =>
+  (dispatch: Dispatch<any>) => {
     let user;
     try {
       user = localStorage.getItem(defaultConfig.auth.authKey);
@@ -151,8 +215,8 @@ export const authLoginCheck =
   };
 
 export const authLogout =
-  (params, next: Next = () => {}) =>
-  (dispatch) => {
+  (params: any, next: Next = () => {}) =>
+  (dispatch: Dispatch<any>) => {
     clearLocalStorage();
     dispatch(resetUserAction());
     next();
@@ -160,7 +224,7 @@ export const authLogout =
 
 export const extendSession =
   (next: Next = () => {}) =>
-  (dispatch) => {
+  (dispatch: Dispatch<any>) => {
     dispatch(extendSessionAction());
 
     return fetchUtils

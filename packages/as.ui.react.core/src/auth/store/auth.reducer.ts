@@ -1,6 +1,16 @@
 import * as AuthActions from './auth.action';
 
-const initialState = {
+export type AuthState = {
+  isLoading: boolean;
+  user: any;
+  authenticated: boolean;
+  roles: any;
+  permissions: any;
+  error: any;
+  customError: any;
+};
+
+const initialState: AuthState = {
   isLoading: false,
   user: null,
   authenticated: false,
@@ -24,7 +34,7 @@ const initialState = {
 //   }), {});
 // }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state: AuthState = initialState, action: AuthActions.AuthActionTypes) => {
   switch (action.type) {
     case AuthActions.RESET_USER:
       return initialState;

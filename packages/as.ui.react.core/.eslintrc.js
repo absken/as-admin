@@ -1,24 +1,32 @@
 module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'react-app',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+    'prettier/babel',
+    'prettier/react',
+  ],
   parser: '@typescript-eslint/parser',
-  extends: ['react-app', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
   plugins: ['@typescript-eslint', 'import', 'jsx-a11y', 'prettier', 'react', 'react-hooks'],
   rules: {
-    'no-use-before-define': 'off',
-    'prettier/prettier': 'error',
-    'no-restricted-imports': [
-      'error',
-      {
-        paths: [
-          {
-            name: '@material-ui/core',
-            importNames: ['makeStyles', 'createMuiTheme'],
-            message:
-              'Please import from @material-ui/core/styles instead. See https://material-ui.com/guides/minimizing-bundle-size/#option-2 for more information',
-          },
-        ],
-      },
-    ],
-    'no-redeclare': 'off',
-    '@typescript-eslint/no-redeclare': ['error'],
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+  },
+  settings: {
+    react: {
+      version: 'latest',
+    },
   },
 };

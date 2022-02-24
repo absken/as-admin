@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import lodIsEqual from 'lodash/isEqual';
 
-import { useSafeSetState } from '@as/ui-react-bs';
+import { useSafeSetState } from '../utils';
 import * as AuthActions from './store/auth.action';
 
 export interface AlreadyFetchedPermissions {

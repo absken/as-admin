@@ -1,3 +1,4 @@
 import captureErrorMessage from './captureErrorMessage';
+import { useSafeSetState, useTimeout } from './hooks';
 
-export { captureErrorMessage };
+export { captureErrorMessage, useSafeSetState, useTimeout };
