@@ -4,3 +4,5 @@ lib
 esm
 prism.js
 .eslintrc.js
+tailwind.config.js
+postcss.config.js
