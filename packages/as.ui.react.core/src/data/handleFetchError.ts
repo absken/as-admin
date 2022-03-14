@@ -4,7 +4,7 @@ import lodIsEmpty from 'lodash/isEmpty';
 import { AuthActions, NotificationsActions } from '../store';
 import { captureErrorMessage } from '../utils';
 import { defaultConfig } from '../config';
-import { getStoredHistoryInstance } from '../getHistory';
+import { getStoredHistoryInstance } from '../core/getHistory';
 
 const handleFetchError = (dispatch: Dispatch<any>, action: any) => {
   const history = getStoredHistoryInstance();

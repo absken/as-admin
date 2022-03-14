@@ -1,11 +1,30 @@
 import { combineReducers } from 'redux';
 
-import ui from '../ui/store/ui.reducer';
-import loading from '../loading/store/loading.reducer';
-import notifications from '../notificaton/store/notifications.reducer';
-import breadcrumbs from '../breadcrumb/store/breadcrumbs.reducer';
-import confirm from '../confirm/store/confirm.reducer';
-import navigation from '../navigation/store/navigation.reducer';
+import { AuthState } from '../auth/store/auth.reducer';
+import ui, { UiState } from '../ui/store/ui.reducer';
+import loading, { LoadingState } from '../loading/store/loading.reducer';
+import notifications, { NotificationState } from '../notificaton/store/notifications.reducer';
+import breadcrumbs, { BreadcrumbState } from '../breadcrumb/store/breadcrumbs.reducer';
+import confirm, { ConfirmState } from '../confirm/store/confirm.reducer';
+import navigation, { NavigationState } from '../navigation/store/navigation.reducer';
+
+export interface CoreReduxState {
+  auth: AuthState;
+  core: {
+    ui: UiState;
+    appLoading: LoadingState;
+    notifications: NotificationState;
+    breadcrumbs: BreadcrumbState;
+    confirm: ConfirmState;
+    navigation: NavigationState;
+  };
+  router: {
+    location: Location;
+  };
+
+  // leave space for custom reducers
+  [key: string]: any;
+}
 
 const defaultReducer = () => null;
 

@@ -4,6 +4,7 @@ const API_SERVER: string = 'http://localhost:3005';
 const defaultConfig = {
   app: {
     projectUrl: API_SERVER,
+    defaultThemeType: 'light',
   },
   auth: {
     loginUrl: '/login',

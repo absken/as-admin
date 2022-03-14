@@ -4,18 +4,16 @@ import { Provider, ReactReduxContext } from 'react-redux';
 import { getHistoryInstance } from './getHistory';
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
-import { ThemeProvider } from '@mui/material/styles';
 import lodMerge from 'lodash/merge';
 
 import createAppCoreStore from './createAppCoreStore';
-import { TranslationProvider, defaultI18nProvider } from './i18n';
-import { ConfigContext, defaultConfig } from './config';
-import { NavigationContext, defaultNavigation } from './navigation';
-import { CoreProps } from './types';
+import { TranslationProvider, defaultI18nProvider } from '../i18n';
+import { ConfigContext, defaultConfig } from '../config';
+import { NavigationContext, defaultNavigation } from '../navigation';
+import { CoreProps } from '../types';
 
 const AppCoreContext = (props: CoreProps) => {
   const {
-    theme,
     children,
     history,
     initialState,
@@ -31,19 +29,17 @@ const AppCoreContext = (props: CoreProps) => {
 
   const renderCore = () => {
     return (
-      <ThemeProvider theme={theme}>
-        <ConfigContext.Provider value={finalAppConfig}>
-          <TranslationProvider i18nProvider={defaultI18nProvider}>
-            <NavigationContext.Provider value={finalAppNavigation}>
-              {typeof window !== 'undefined' ? (
-                <ConnectedRouter history={finalHistory}>{children}</ConnectedRouter>
-              ) : (
-                children
-              )}
-            </NavigationContext.Provider>
-          </TranslationProvider>
-        </ConfigContext.Provider>
-      </ThemeProvider>
+      <ConfigContext.Provider value={finalAppConfig}>
+        <TranslationProvider i18nProvider={defaultI18nProvider}>
+          <NavigationContext.Provider value={finalAppNavigation}>
+            {typeof window !== 'undefined' ? (
+              <ConnectedRouter history={finalHistory}>{children}</ConnectedRouter>
+            ) : (
+              children
+            )}
+          </NavigationContext.Provider>
+        </TranslationProvider>
+      </ConfigContext.Provider>
     );
   };
 
@@ -71,7 +67,6 @@ React-admin uses this history for its own ConnectedRouter.`);
 };
 
 AppCoreContext.propTypes = {
-  theme: PropTypes.object.isRequired,
   children: PropTypes.node,
   history: PropTypes.object,
   initialState: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),

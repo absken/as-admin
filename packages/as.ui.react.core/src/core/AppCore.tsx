@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CoreProps } from './types';
+import { CoreProps } from '../types';
 import AppCoreContext from './AppCoreContext';
 
 const AppCore = (props: CoreProps) => {
   const {
-    theme,
     children,
     history,
     initialState,
@@ -18,7 +17,6 @@ const AppCore = (props: CoreProps) => {
 
   return (
     <AppCoreContext
-      theme={theme}
       history={history}
       initialState={initialState}
       appCustomReducers={appCustomReducers}
@@ -32,7 +30,6 @@ const AppCore = (props: CoreProps) => {
 };
 
 AppCore.propTypes = {
-  theme: PropTypes.object,
   children: PropTypes.node,
   history: PropTypes.object,
   initialState: PropTypes.object,

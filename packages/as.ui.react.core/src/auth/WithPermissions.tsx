@@ -7,7 +7,7 @@ import usePermissionsOptimized from './usePermissionsOptimized';
 export interface WithPermissionsProps {
   authParams?: object;
   component?: ComponentType<any>;
-  location?: Location;
+  location?: any;
   [key: string]: any;
 }
 
@@ -45,4 +45,4 @@ WithPermissions.propTypes = {
   component: PropTypes.elementType.isRequired,
 };
 
-export default WithPermissions;
+export default WithPermissions as ComponentType<WithPermissionsProps>;

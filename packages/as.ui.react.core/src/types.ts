@@ -1,14 +1,16 @@
 import { ReactNode, Dispatch } from 'react';
-import { ThemeOptions } from '@mui/material';
 import { History } from 'history';
 import { Store } from 'redux';
+
+import { CoreReduxState } from './store/core.reducer';
+
+export { CoreReduxState };
 
 export type CustomInterceptor = (
   store: Store<any>
 ) => (next: (action: any) => void) => (action: any) => void;
 
 export interface CoreProps {
-  theme: ThemeOptions;
   children?: ReactNode;
   history?: History;
   initialState?: object | (() => object);
@@ -35,26 +37,6 @@ export interface ApiCallOptions {
   headers?: Headers;
   query?: any;
   fetchOptions?: object;
-}
-
-export interface CoreReduxState {
-  auth: {
-    location: Location;
-  };
-  core: {
-    ui: any;
-    appLoading: any;
-    notifications: any;
-    breadcrumbs: any;
-    confirm: any;
-    navigation: any;
-  };
-  router: {
-    location: Location;
-  };
-
-  // leave space for custom reducers
-  [key: string]: any;
 }
 
 export type Translate = (key: string, options?: any) => string;

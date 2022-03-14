@@ -4,12 +4,14 @@ export interface UiState {
   pageTitle: string;
   refreshVersion: number;
   customMessage: string;
+  themeType: string;
 }
 
 const initialState: UiState = {
   pageTitle: '',
   refreshVersion: 0,
   customMessage: '',
+  themeType: 'light',
 };
 
 const uiReducer = (state: UiState = initialState, action: UiActions.UiActionTypes): UiState => {
@@ -30,6 +32,12 @@ const uiReducer = (state: UiState = initialState, action: UiActions.UiActionType
       return {
         ...state,
         customMessage: action.payload && action.payload.message,
+      };
+
+    case UiActions.SET_THEME_TYPE:
+      return {
+        ...state,
+        themeType: action.payload,
       };
 
     default:

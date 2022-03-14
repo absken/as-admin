@@ -1,61 +1,40 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { Counter } from './features/counter/Counter';
-import { store } from './store';
+import { Route, Switch } from 'react-router-dom';
+import { AppCore } from '@as/ui-react-core';
+import CssBaseline from '@mui/material/CssBaseline';
+
+import { appReducer } from './store';
+import { appConfig } from './appConfig';
+import navigation from './nav';
+import './styles/css/app.scss';
+
+const loading = <div>Please wait...</div>;
+const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'));
+const Login = React.lazy(() => import('./layout/pages/Login'));
+const Register = React.lazy(() => import('./layout/pages/Register'));
+const Page404 = React.lazy(() => import('./layout/pages/Page404'));
+const Page500 = React.lazy(() => import('./layout/pages/Page500'));
 
 function App() {
+  // Get Default themeType
   return (
-    <Provider store={store}>
-      <div className="App">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-        <header className="App-header">
-          <Counter />
-          <p>
-            Edit
-            <code>src/App.tsx</code>
-            and save to reload.
-          </p>
-          <span>
-            <span>Learn </span>
-            <a
-              className="App-link"
-              href="https://reactjs.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              React
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Redux
-            </a>
-            <span>, </span>
-            <a
-              className="App-link"
-              href="https://redux-toolkit.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Redux Toolkit
-            </a>
-            ,<span> and </span>
-            <a
-              className="App-link"
-              href="https://react-redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              React Redux
-            </a>
-          </span>
-        </header>
-      </div>
-    </Provider>
+    <AppCore
+      appConfig={appConfig}
+      appNavigation={navigation}
+      appCustomReducers={appReducer}
+      appCustomInterceptor={undefined}
+    >
+      <CssBaseline />
+      <React.Suspense fallback={loading}>
+        <Switch>
+          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route exact path="/register" render={(props) => <Register {...props} />} />
+          <Route exact path="/404" render={(props) => <Page404 {...props} />} />
+          <Route exact path="/500" render={(props) => <Page500 {...props} />} />
+          <Route path="/" render={(props) => <DefaultLayout {...props} />} />
+        </Switch>
+      </React.Suspense>
+    </AppCore>
   );
 }
 

@@ -1,0 +1,94 @@
+:root {
+  // color
+  --as-blue: #0d6efd;
+  --as-indigo: #6610f2;
+  --as-purple: #6f42c1;
+  --as-pink: #d63384;
+  --as-red: #dc3545;
+  --as-orange: #fd7e14;
+  --as-yellow: #ffc107;
+  --as-green: #198754;
+  --as-teal: #20c997;
+  --as-cyan: #0dcaf0;
+  --as-white: #fff;
+  --as-gray: #8a93a2;
+  --as-gray-dark: #636f83;
+  --as-primary: #FF8300;
+  --as-secondary: #326579;
+  --as-success: #2eb85c;
+  --as-info: #0288d1;
+  --as-warning: #f9b115;
+  --as-danger: #e55353;
+  --as-light: #ebedef;
+  --as-dark: #4f5d73;
+  --as-body: rgba(249, 250, 251, 0.95);
+  --as-active-menu: rgba(50, 101, 121, 0.10);
+
+  // hover color
+  --as-primary-hover: #B25B00;
+
+  // border color
+  --as-layout-border: #d8dbe0;
+
+  // breakpoint
+  --as-breakpoint-xs: 0;
+  --as-breakpoint-sm: 576px;
+  --as-breakpoint-md: 768px;
+  --as-breakpoint-lg: 992px;
+  --as-breakpoint-xl: 1200px;
+  --as-breakpoint-xxl: 1400px;
+  --as-mobile-breakpoint: md;
+
+  // font
+  --as-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --as-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  // z-index
+  --as-z-dropdown: 1000;
+  --as-z-sticky: 1020;
+  --as-z-fixed: 1030;
+  --as-z-modal-backdrop: 1040;
+  --as-z-offcanvas: 1050;
+  --as-z-modal: 1060;
+  --as-z-popover: 1070;
+  --as-z-tooltip: 1080;
+  --as-z-toaster: 1090;
+
+  // miscellaneous
+  --as-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+
+  // rgba color
+  --as-blue-rgba: 13, 110, 253, 1;
+  --as-indigo-rgba: 102, 16, 242, 1;
+  --as-purple-rgba: 111, 66, 193, 1;
+  --as-pink-rgba: 214, 51, 132, 1;
+  --as-red-rgba: 220, 53, 69, 1;
+  --as-orange-rgba: 253, 126, 20, 1;
+  --as-yellow-rgba: 255, 193, 7, 1;
+  --as-green-rgba: 25, 135, 84, 1;
+  --as-teal-rgba: 32, 201, 151, 1;
+  --as-cyan-rgba: 13, 202, 240, 1;
+  --as-white-rgba: 255, 255, 255, 1;
+  --as-gray-rgba: 138, 147, 162, 1;
+  --as-gray-dark-rgba: 99, 111, 131, 1;
+  --as-primary-rgba: 50, 31, 219, 1;
+  --as-secondary-rgba: 157, 165, 177, 1;
+  --as-success-rgba: 46, 184, 92, 1;
+  --as-info-rgba: 51, 153, 255, 1;
+  --as-warning-rgba: 249, 177, 21, 1;
+  --as-danger-rgba: 229, 83, 83, 1;
+  --as-light-rgba: 235, 237, 239, 1;
+  --as-dark-rgba: 79, 93, 115, 1;
+  --as-primary-text-color-rgba: 255, 255, 255, 0.87;
+  --as-secondary-text-color-rgba: 0, 0, 21, 1;
+  --as-success-text-color-rgba: 0, 0, 21, 1;
+  --as-danger-text-color-rgba: 0, 0, 21, 1;
+  --as-warning-text-color-rgba: 44, 56, 74, 0.95;
+  --as-info-text-color-rgba: 0, 0, 21, 1;
+  --as-light-text-color-rgba: 44, 56, 74, 0.95;
+  --as-dark-text-color-rgba: 255, 255, 255, 0.87;
+}
+
+body.bg-body {
+  background-color: var(--as-body);
+}

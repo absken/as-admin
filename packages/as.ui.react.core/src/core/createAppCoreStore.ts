@@ -1,9 +1,9 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
-import coreInterceptor from './store/coreInterceptor';
-import createAppReducer from './store';
-import { CustomInterceptor } from './types';
+import coreInterceptor from '../store/coreInterceptor';
+import createAppReducer from '../store';
+import { CustomInterceptor } from '../types';
 import { Store } from 'redux';
 import { History } from 'history';
 
