@@ -22,7 +22,11 @@ export interface SetThemeTypeAction {
   readonly payload: string;
 }
 
-export type UiActionTypes = SetPageTitleAction | RefreshPageAction | SetCustomMessageAction | SetThemeTypeAction;
+export type UiActionTypes =
+  | SetPageTitleAction
+  | RefreshPageAction
+  | SetCustomMessageAction
+  | SetThemeTypeAction;
 
 export const setPageTitleAction = (pageTitle: string) => ({
   type: SET_PAGE_TITLE,

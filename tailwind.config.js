@@ -29,12 +29,12 @@ module.exports = {
         1090: 'var(--as-z-toaster)',
       },
       screens: {
-        'xs': '0',
-        'sm': '576px',
-        'md': '768px',
-        'lg': '992px',
-        'xl': '1200px',
-        'xxl': '1400px',
+        xs: '0',
+        sm: '576px',
+        md: '768px',
+        lg: '992px',
+        xl: '1200px',
+        xxl: '1400px',
       },
       outline: {
         blue: '2px solid rgba(0, 112, 244, 0.5)',

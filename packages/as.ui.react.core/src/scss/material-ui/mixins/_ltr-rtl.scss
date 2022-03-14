@@ -1,6 +1,6 @@
 @mixin ltr {
   @if $enable-ltr {
-    html:not([dir="rtl"]) & {
+    html:not([dir='rtl']) & {
       @content;
     }
   }
@@ -8,7 +8,7 @@
 
 @mixin rtl {
   @if $enable-rtl {
-    *[dir="rtl"] & {
+    *[dir='rtl'] & {
       @content;
     }
   }
@@ -16,11 +16,11 @@
 
 @function reflect($element) {
   @if type-of($element) == string {
-    @if str-index($element, "left") {
-      @return str-replace($element, "left", "right");
+    @if str-index($element, 'left') {
+      @return str-replace($element, 'left', 'right');
     }
-    @if str-index($element, "right") {
-      @return str-replace($element, "right", "left");
+    @if str-index($element, 'right') {
+      @return str-replace($element, 'right', 'left');
     }
   }
 
@@ -38,22 +38,18 @@
     @include rtl() {
       @if $value-rtl {
         #{$property-reflected}: $value-rtl $important;
-      }
-      @else {
+      } @else {
         #{$property-reflected}: $value-reflected $important;
       }
     }
-  }
-  @else {
+  } @else {
     @if $enable-rtl {
       @if $value-rtl {
         #{$property-reflected}: $value-rtl $important;
-      }
-      @else {
+      } @else {
         #{$property-reflected}: $value-reflected $important;
       }
-    }
-    @else {
+    } @else {
       #{$property}: $value $important;
     }
   }

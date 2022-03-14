@@ -13,7 +13,7 @@
   --as-white: #fff;
   --as-gray: #8a93a2;
   --as-gray-dark: #636f83;
-  --as-primary: #FF8300;
+  --as-primary: #ff8300;
   --as-secondary: #326579;
   --as-success: #2eb85c;
   --as-info: #0288d1;
@@ -22,10 +22,10 @@
   --as-light: #ebedef;
   --as-dark: #4f5d73;
   --as-body: rgba(249, 250, 251, 0.95);
-  --as-active-menu: rgba(50, 101, 121, 0.10);
+  --as-active-menu: rgba(50, 101, 121, 0.1);
 
   // hover color
-  --as-primary-hover: #B25B00;
+  --as-primary-hover: #b25b00;
 
   // border color
   --as-layout-border: #d8dbe0;
@@ -40,8 +40,11 @@
   --as-mobile-breakpoint: md;
 
   // font
-  --as-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --as-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --as-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --as-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 
   // z-index
   --as-z-dropdown: 1000;

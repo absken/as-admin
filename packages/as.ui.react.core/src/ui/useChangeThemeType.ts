@@ -14,9 +14,12 @@ import * as UiActions from './store/ui.action';
 const useSetThemeType = () => {
   const dispatch = useDispatch();
 
-  return useCallback((themeType: string) => {
-    dispatch(UiActions.setThemeTypeAction(themeType));
-  }, [dispatch]);
+  return useCallback(
+    (themeType: string) => {
+      dispatch(UiActions.setThemeTypeAction(themeType));
+    },
+    [dispatch]
+  );
 };
 
 export default useSetThemeType;

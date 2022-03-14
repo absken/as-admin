@@ -10,12 +10,23 @@
   padding: $sidebar-padding-y $sidebar-padding-x;
   color: var(--#{$variable-prefix}sidebar-color, $sidebar-color);
   background: var(--#{$variable-prefix}sidebar-bg, $sidebar-bg);
-  @include ltr-rtl("border-right", var(--#{$variable-prefix}sidebar-border-width, 0) solid var(--#{$variable-prefix}sidebar-border-color, transparent));
+  @include ltr-rtl(
+    'border-right',
+    var(--#{$variable-prefix}sidebar-border-width, 0) solid
+      var(--#{$variable-prefix}sidebar-border-color, transparent)
+  );
   box-shadow: none;
-  @include transition(margin-left .15s, margin-right .15s, box-shadow .075s, transform .15s, width .15s, z-index 0s ease .15s);
+  @include transition(
+    margin-left 0.15s,
+    margin-right 0.15s,
+    box-shadow 0.075s,
+    transform 0.15s,
+    width 0.15s,
+    z-index 0s ease 0.15s
+  );
 
-  &:not(.sidebar-end){
-    @include ltr-rtl("margin-left", 0);
+  &:not(.sidebar-end) {
+    @include ltr-rtl('margin-left', 0);
     ~ * {
       --#{$variable-prefix}sidebar-occupy-start: #{$sidebar-width};
     }
@@ -23,29 +34,29 @@
 
   &.sidebar-end {
     order: 99;
-    @include ltr-rtl("margin-right", 0);
+    @include ltr-rtl('margin-right', 0);
     ~ * {
       --#{$variable-prefix}sidebar-occupy-end: #{$sidebar-width};
     }
   }
 
   &.hide {
-    &:not(.sidebar-end){
-      @include ltr-rtl("margin-left", - $sidebar-width);
+    &:not(.sidebar-end) {
+      @include ltr-rtl('margin-left', -$sidebar-width);
       ~ * {
         --#{$variable-prefix}sidebar-occupy-start: 0;
       }
     }
     &.sidebar-end {
-      @include ltr-rtl("margin-right", - $sidebar-width);
+      @include ltr-rtl('margin-right', -$sidebar-width);
       ~ * {
         --#{$variable-prefix}sidebar-occupy-end: 0;
       }
     }
   }
 
-  &[class*="bg-"]  {
-    border-color: rgba($black, .1);
+  &[class*='bg-'] {
+    border-color: rgba($black, 0.1);
   }
 
   @each $width, $value in $sidebar-widths {
@@ -65,14 +76,14 @@
       }
 
       &.hide {
-        &:not(.sidebar-end){
-          @include ltr-rtl("margin-left", - $value);
+        &:not(.sidebar-end) {
+          @include ltr-rtl('margin-left', -$value);
           ~ * {
             --#{$variable-prefix}sidebar-occupy-start: 0;
           }
         }
         &.sidebar-end {
-          @include ltr-rtl("margin-right", - $value);
+          @include ltr-rtl('margin-right', -$value);
           ~ * {
             --#{$variable-prefix}sidebar-occupy-end: 0;
           }
@@ -90,11 +101,11 @@
       @include elevation(2);
 
       &:not(.sidebar-end) {
-        @include ltr-rtl("left", 0);
+        @include ltr-rtl('left', 0);
       }
 
       &.sidebar-end {
-        @include ltr-rtl("right", 0);
+        @include ltr-rtl('right', 0);
       }
     }
   }
@@ -115,7 +126,7 @@
     @include elevation(3);
 
     &:not(.sidebar-end) {
-      @include ltr-rtl("left", 0);
+      @include ltr-rtl('left', 0);
 
       ~ * {
         --#{$variable-prefix}sidebar-occupy-start: 0;
@@ -123,7 +134,7 @@
     }
 
     &.sidebar-end {
-      @include ltr-rtl("right", 0);
+      @include ltr-rtl('right', 0);
 
       ~ * {
         --#{$variable-prefix}sidebar-occupy-end: 0;
@@ -139,14 +150,14 @@
     bottom: 0;
     z-index: $zindex-fixed + 1;
 
-    &:not(.sidebar-end){
-      @include ltr-rtl("left", 0);
+    &:not(.sidebar-end) {
+      @include ltr-rtl('left', 0);
       ~ * {
         --#{$variable-prefix}sidebar-occupy-start: 0;
       }
     }
     &.sidebar-end {
-      @include ltr-rtl("right", 0);
+      @include ltr-rtl('right', 0);
       ~ * {
         --#{$variable-prefix}sidebar-occupy-end: 0;
       }
@@ -157,7 +168,7 @@
 .sidebar-close {
   position: absolute;
   top: 0;
-  @include ltr-rtl("right", 0);
+  @include ltr-rtl('right', 0);
   width: $sidebar-brand-height;
   height: $sidebar-header-height;
   color: var(--#{$variable-prefix}sidebar-color, $sidebar-color);
@@ -180,8 +191,13 @@
   justify-content: center;
   color: var(--#{$variable-prefix}sidebar-brand-color, $sidebar-brand-color);
   background-color: var(--#{$variable-prefix}sidebar-brand-bg, $sidebar-brand-bg);
-  background-image: linear-gradient(var(--#{$variable-prefix}sidebar-brand-gradient-start-color, $sidebar-brand-gradient-start-color), var(--#{$variable-prefix}sidebar-brand-gradient-end-color, $sidebar-brand-gradient-end-color));
-
+  background-image: linear-gradient(
+    var(
+      --#{$variable-prefix}sidebar-brand-gradient-start-color,
+      $sidebar-brand-gradient-start-color
+    ),
+    var(--#{$variable-prefix}sidebar-brand-gradient-end-color, $sidebar-brand-gradient-end-color)
+  );
 
   .sidebar-brand-narrow {
     display: none;
@@ -227,11 +243,14 @@
     display: block;
     width: $sidebar-toggler-indicator-width;
     height: $sidebar-toggler-indicator-height;
-    content: "";
-    background-image: var(--#{$variable-prefix}sidebar-toggler-indicator, escape-svg($sidebar-toggler-indicator-icon));
+    content: '';
+    background-image: var(
+      --#{$variable-prefix}sidebar-toggler-indicator,
+      escape-svg($sidebar-toggler-indicator-icon)
+    );
     background-repeat: no-repeat;
     background-position: center;
-    background-size: $sidebar-toggler-indicator-height * .25;
+    background-size: $sidebar-toggler-indicator-height * 0.25;
     @include transition($sidebar-toggler-transition);
     @include rtl() {
       transform: rotate(-180deg);
@@ -245,7 +264,10 @@
   &:hover {
     background-color: var(--#{$variable-prefix}sidebar-toggler-hover-bg, $sidebar-toggler-hover-bg);
     &::before {
-      background-image: var(--#{$variable-prefix}sidebar-toggler-indicator-hover, escape-svg($sidebar-toggler-indicator-hover-icon));
+      background-image: var(
+        --#{$variable-prefix}sidebar-toggler-indicator-hover,
+        escape-svg($sidebar-toggler-indicator-hover-icon)
+      );
     }
   }
 
@@ -262,9 +284,9 @@
   flex: 0 0 $sidebar-toggler-height;
   justify-content: flex-end;
   width: inherit;
-  padding-top: .5rem;
-  padding-right: .5rem;
-  padding-bottom: .5rem;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   cursor: pointer;
   background-color: var(--#{$variable-prefix}sidebar-toggler-bg, $sidebar-toggler-bg);
   border: 0;
@@ -287,7 +309,7 @@
   @include media-breakpoint-down($mobile-breakpoint) {
     position: fixed;
     top: 0;
-    @include ltr-rtl("left", 0);
+    @include ltr-rtl('left', 0);
     z-index: $zindex-fixed;
     width: 100vw;
     height: 100vh;
@@ -295,8 +317,12 @@
     @include transition($sidebar-backdrop-transition);
 
     // Fade for backdrop
-    &.fade { opacity: 0; }
-    &.show { opacity: $sidebar-backdrop-opacity; }
+    &.fade {
+      opacity: 0;
+    }
+    &.show {
+      opacity: $sidebar-backdrop-opacity;
+    }
   }
 }
 
@@ -306,7 +332,10 @@
   left: 8px;
   display: block;
   height: 2px;
-  background-color: var(--#{$variable-prefix}side-divider-border-color, $sidebar-divider-border-color);
+  background-color: var(
+    --#{$variable-prefix}side-divider-border-color,
+    $sidebar-divider-border-color
+  );
 }
 
 // Responsive behavior
@@ -317,11 +346,11 @@
       @include elevation(0);
 
       &:not(.sidebar-end) {
-        @include ltr-rtl("margin-left", - $sidebar-width);
+        @include ltr-rtl('margin-left', -$sidebar-width);
 
         @each $width, $value in $sidebar-widths {
           &.sidebar-#{$width} {
-            @include ltr-rtl("margin-left", - $value);
+            @include ltr-rtl('margin-left', -$value);
           }
         }
         ~ * {
@@ -329,11 +358,11 @@
         }
       }
       &.sidebar-end {
-        @include ltr-rtl("margin-right", - $sidebar-width);
+        @include ltr-rtl('margin-right', -$sidebar-width);
 
         @each $width, $value in $sidebar-widths {
           &.sidebar-#{$width} {
-            @include ltr-rtl("margin-right", - $value);
+            @include ltr-rtl('margin-right', -$value);
           }
         }
         ~ * {

@@ -1,13 +1,6 @@
 import captureErrorMessage from './captureErrorMessage';
 import { useForkedRef, useSafeSetState, useTimeout } from './hooks';
-import {
-  getColor,
-  getStyle,
-  hexToRgb,
-  hexToRgba,
-  rgbToHex,
-  darken,
-} from './colorManupulator';
+import { getColor, getStyle, hexToRgb, hexToRgba, rgbToHex, darken } from './colorManupulator';
 
 const utils = {
   captureErrorMessage,

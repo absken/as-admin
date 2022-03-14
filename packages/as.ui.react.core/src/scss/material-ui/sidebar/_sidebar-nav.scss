@@ -33,33 +33,54 @@
     @include transition($sidebar-nav-link-transition);
 
     &.active {
-      color: var(--#{$variable-prefix}sidebar-nav-link-active-color, $sidebar-nav-link-active-color);
+      color: var(
+        --#{$variable-prefix}sidebar-nav-link-active-color,
+        $sidebar-nav-link-active-color
+      );
       background: var(--#{$variable-prefix}sidebar-nav-link-active-bg, $sidebar-nav-link-active-bg);
 
       .nav-icon {
-        color: var(--#{$variable-prefix}sidebar-nav-link-active-icon-color, $sidebar-nav-link-active-icon-color);
+        color: var(
+          --#{$variable-prefix}sidebar-nav-link-active-icon-color,
+          $sidebar-nav-link-active-icon-color
+        );
       }
     }
 
     &.disabled {
-      color: var(--#{$variable-prefix}sidebar-nav-link-disabled-color, $sidebar-nav-link-disabled-color);
+      color: var(
+        --#{$variable-prefix}sidebar-nav-link-disabled-color,
+        $sidebar-nav-link-disabled-color
+      );
       pointer-events: none;
       cursor: not-allowed;
       background: transparent;
 
       .nav-icon {
-        color: var(--#{$variable-prefix}sidebar-nav-link-disabled-icon-color, $sidebar-nav-link-disabled-icon-color);
+        color: var(
+          --#{$variable-prefix}sidebar-nav-link-disabled-icon-color,
+          $sidebar-nav-link-disabled-icon-color
+        );
       }
 
       &:hover {
-        color: var(--#{$variable-prefix}sidebar-nav-link-disabled-color, $sidebar-nav-link-disabled-color);
+        color: var(
+          --#{$variable-prefix}sidebar-nav-link-disabled-color,
+          $sidebar-nav-link-disabled-color
+        );
 
         .nav-icon {
-          color: var(--#{$variable-prefix}sidebar-nav-link-disabled-icon-color, $sidebar-nav-link-disabled-icon-color);
+          color: var(
+            --#{$variable-prefix}sidebar-nav-link-disabled-icon-color,
+            $sidebar-nav-link-disabled-icon-color
+          );
         }
 
         &.nav-dropdown-toggle::after {
-          background-image: var(--#{$variable-prefix}sidebar-nav-group-indicator-hover, escape-svg($sidebar-nav-group-indicator-hover-icon));
+          background-image: var(
+            --#{$variable-prefix}sidebar-nav-group-indicator-hover,
+            escape-svg($sidebar-nav-group-indicator-hover-icon)
+          );
         }
       }
     }
@@ -75,16 +96,25 @@
 
     @media (hover: hover), (-ms-high-contrast: none) {
       &:hover {
-        color: var(--#{$variable-prefix}sidebar-nav-link-hover-color, $sidebar-nav-link-hover-color);
+        color: var(
+          --#{$variable-prefix}sidebar-nav-link-hover-color,
+          $sidebar-nav-link-hover-color
+        );
         text-decoration: none;
         background: var(--#{$variable-prefix}sidebar-nav-link-hover-bg, $sidebar-nav-link-hover-bg);
 
         .nav-icon {
-          color: var(--#{$variable-prefix}sidebar-nav-link-hover-icon-color, $sidebar-nav-link-hover-icon-color);
+          color: var(
+            --#{$variable-prefix}sidebar-nav-link-hover-icon-color,
+            $sidebar-nav-link-hover-icon-color
+          );
         }
 
         &.nav-group-toggle::after {
-          background-image: var(--#{$variable-prefix}sidebar-nav-group-indicator-hover, escape-svg($sidebar-nav-group-indicator-hover-icon));
+          background-image: var(
+            --#{$variable-prefix}sidebar-nav-group-indicator-hover,
+            escape-svg($sidebar-nav-group-indicator-hover-icon)
+          );
         }
       }
     }
@@ -100,7 +130,7 @@
     @include transition(inherit);
 
     &:first-child {
-      @include ltr-rtl("margin-left", - $sidebar-nav-link-padding-x);
+      @include ltr-rtl('margin-left', -$sidebar-nav-link-padding-x);
     }
   }
 
@@ -122,7 +152,10 @@
 
       .nav-group-toggle,
       .nav-group-toggle-tab {
-        color: var(--#{$variable-prefix}sidebar-nav-group-toggle-show-color, $sidebar-nav-group-toggle-show-color);
+        color: var(
+          --#{$variable-prefix}sidebar-nav-group-toggle-show-color,
+          $sidebar-nav-group-toggle-show-color
+        );
       }
 
       > .nav-group-toggle::after {
@@ -142,9 +175,12 @@
       display: block;
       flex: 0 12px;
       height: 12px;
-      @include ltr-rtl("margin-left", auto);
-      content: "";
-      background-image: var(--#{$variable-prefix}sidebar-nav-group-indicator, escape-svg($sidebar-nav-group-indicator-icon));
+      @include ltr-rtl('margin-left', auto);
+      content: '';
+      background-image: var(
+        --#{$variable-prefix}sidebar-nav-group-indicator,
+        escape-svg($sidebar-nav-group-indicator-icon)
+      );
       background-repeat: no-repeat;
       background-position: center;
       @include transition($sidebar-nav-group-indicator-transition);
@@ -161,10 +197,10 @@
     list-style: none;
 
     .nav-link {
-      @include ltr-rtl("padding-left", $sidebar-nav-icon-width);
+      @include ltr-rtl('padding-left', $sidebar-nav-icon-width);
 
       .nav-icon {
-        @include ltr-rtl("margin-left", - $sidebar-nav-icon-width);
+        @include ltr-rtl('margin-left', -$sidebar-nav-icon-width);
       }
     }
   }
@@ -172,8 +208,8 @@
   &.compact,
   .compact {
     .nav-link {
-      padding-top: $sidebar-nav-link-padding-y * .5;
-      padding-bottom: $sidebar-nav-link-padding-y * .5;
+      padding-top: $sidebar-nav-link-padding-y * 0.5;
+      padding-bottom: $sidebar-nav-link-padding-y * 0.5;
     }
   }
 
@@ -201,9 +237,15 @@
     .nav-link {
       &.active {
         &:hover {
-          color: var(--#{$variable-prefix}sidebar-nav-link-active-color, $sidebar-light-nav-link-active-color);
+          color: var(
+            --#{$variable-prefix}sidebar-nav-link-active-color,
+            $sidebar-light-nav-link-active-color
+          );
           .nav-icon {
-            color: var(--#{$variable-prefix}sidebar-nav-link-active-icon-color, $sidebar-light-nav-link-active-icon-color);
+            color: var(
+              --#{$variable-prefix}sidebar-nav-link-active-icon-color,
+              $sidebar-light-nav-link-active-icon-color
+            );
           }
         }
       }
@@ -211,7 +253,10 @@
       @media (hover: hover), (-ms-high-contrast: none) {
         &:hover {
           &.nav-group-toggle::after {
-            background-image: var(--#{$variable-prefix}sidebar-nav-group-indicator-hover, escape-svg($sidebar-light-nav-group-indicator-hover-icon));
+            background-image: var(
+              --#{$variable-prefix}sidebar-nav-group-indicator-hover,
+              escape-svg($sidebar-light-nav-group-indicator-hover-icon)
+            );
           }
         }
       }
@@ -224,9 +269,12 @@
         display: block;
         flex: 0 12px;
         height: 12px;
-        @include ltr-rtl("margin-left", auto);
-        content: "";
-        background-image: var(--#{$variable-prefix}sidebar-nav-group-indicator, escape-svg($sidebar-light-nav-group-indicator-icon));
+        @include ltr-rtl('margin-left', auto);
+        content: '';
+        background-image: var(
+          --#{$variable-prefix}sidebar-nav-group-indicator,
+          escape-svg($sidebar-light-nav-group-indicator-icon)
+        );
         background-repeat: no-repeat;
         background-position: center;
         @include transition($sidebar-nav-group-indicator-transition);

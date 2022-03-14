@@ -23,12 +23,9 @@ const getCssCustomProperties = (): any => {
     }
   }
 
-  cssText = cssText.substring(
-    cssText.lastIndexOf('{') + 1,
-    cssText.lastIndexOf('}')
-  );
+  cssText = cssText.substring(cssText.lastIndexOf('{') + 1, cssText.lastIndexOf('}'));
 
-  cssText.split(';').forEach(property => {
+  cssText.split(';').forEach((property) => {
     if (property) {
       const name = property.split(': ')[0];
       const value = property.split(': ')[1];
@@ -39,6 +36,6 @@ const getCssCustomProperties = (): any => {
     }
   });
   return cssCustomProperties;
-}
+};
 
 export default getCssCustomProperties;

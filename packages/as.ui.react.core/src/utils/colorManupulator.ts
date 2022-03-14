@@ -1,6 +1,5 @@
 import getCssCustomProperties from './getCssCustomProperties';
 
-
 const minIEVersion = 10;
 // @ts-ignore
 const isIE1x = () => Boolean(document.documentMode) && document.documentMode >= minIEVersion;
@@ -119,16 +118,9 @@ const darken = (color: any, coefficient: number) => {
   }
 
   return recomposeColor(color);
-}
-
-export {
-  getColor,
-  getStyle,
-  hexToRgb,
-  hexToRgba,
-  rgbToHex,
-  darken,
 };
+
+export { getColor, getStyle, hexToRgb, hexToRgba, rgbToHex, darken };
 
 function decomposeColor(color: any): any {
   // Idempotent
@@ -144,7 +136,9 @@ function decomposeColor(color: any): any {
   const type = color.substring(0, marker);
 
   if (['rgb', 'rgba', 'hsl', 'hsla', 'color'].indexOf(type) === -1) {
-    throw new Error(`Unsupported \`${color}\` color. The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().`);
+    throw new Error(
+      `Unsupported \`${color}\` color. The following formats are supported: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla(), color().`
+    );
   }
 
   let values = color.substring(marker + 1, color.length - 1);
@@ -159,7 +153,9 @@ function decomposeColor(color: any): any {
     }
 
     if (['srgb', 'display-p3', 'a98-rgb', 'prophoto-rgb', 'rec-2020'].indexOf(colorSpace) === -1) {
-      throw new Error(`Unsupported \`${colorSpace}\` color space. The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.`);
+      throw new Error(
+        `Unsupported \`${colorSpace}\` color space. The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rgb, rec-2020.`
+      );
     }
   } else {
     values = values.split(',');
@@ -169,22 +165,17 @@ function decomposeColor(color: any): any {
   return {
     type,
     values,
-    colorSpace
+    colorSpace,
   };
 }
 
 function recomposeColor(color: any) {
-  const {
-    type,
-    colorSpace
-  } = color;
-  let {
-    values
-  } = color;
+  const { type, colorSpace } = color;
+  let { values } = color;
 
   if (type.indexOf('rgb') !== -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
-    values = values.map((n: any, i: number) => i < 3 ? parseInt(n, 10) : n);
+    values = values.map((n: any, i: number) => (i < 3 ? parseInt(n, 10) : n));
   } else if (type.indexOf('hsl') !== -1) {
     values[1] = `${values[1]}%`;
     values[2] = `${values[2]}%`;
