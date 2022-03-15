@@ -34,9 +34,10 @@ Within the download you'll find the following directories and files. You'll see 
 ```
 
 ## Installation & Build
+
 ### Clone repo
 
-``` bash
+```bash
 # clone the repo
 $ git clone git clone  https://(MY ACCOUNT)@bitbucket.org/absencesoft/as.admin.git my-project
 
@@ -45,20 +46,22 @@ $ cd my-project
 ```
 
 ### Installation
+
 If you do not have yarn installed, you can run 'npm install --global yarn'
 
-``` bash
+```bash
 $ yarn install
 ```
 
 ### Install all the dependency packages
+
 (USE YARN, DO NOT USE NPM Command) : npm installation causes multiple REACT instances in the app
 
 If you do not have yarn installed, you can run 'npm install --global yarn'
 
 (THIS COMMAND TAKES MORE THAN 10 MINUTES FOR THE FIRST TIME, SO BE PATIENT )
 
-``` bash
+```bash
 # go into app's directory
 $ cd my-project
 
@@ -70,32 +73,32 @@ $ yarn install
 
 Run `build` to build the project. The build artifacts will be stored in the `build/` directory.
 
-
 ```bash
 # build for production with minification
 $ npm run build
 ```
 
 ## Run App in Your Local
+
 Do this after install and build the app
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Local Mock Server
 
-``` bash
+```bash
 $ yarn run mockapi
 ```
 
 ### AbsenceSoft Admin
 
-``` bash
+```bash
 $ yarn start
 ```
-Login with admin/admin account
 
+Login with admin/admin account
 
 ## Test
 
-``` bash
+```bash
 $ yarn test
 ```
