@@ -50,7 +50,11 @@ const createAppCoreStore = ({
       })) ||
     compose;
 
-  if (process.env.REACT_APP_STAGE !== 'production' && typeof window !== 'undefined') {
+  if (
+    process.env.REACT_APP_STAGE !== 'production' &&
+    process.env.REDUX_LOGGER_OFF !== 'true' &&
+    typeof window !== 'undefined'
+  ) {
     const { logger } = require(`redux-logger`);
     middleware.push(logger);
   }

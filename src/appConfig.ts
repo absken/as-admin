@@ -2,7 +2,7 @@
 const EXTERNAL_MOCK_API_SERVER = 'https://as-admin.herokuapp.com';
 const LOCAL_MOCK_API_SERVER = 'http://localhost:3005';
 
-const LOCAL_API_SERVER = 'http://localhost:8092';
+const LOCAL_API_SERVER = 'http://localhost:3005';
 const PRODUCT_API_SERVER = `${window.location.origin}/api`;
 
 let API_URL;
