@@ -1,50 +1,101 @@
-# Getting Started with Create React App
+# AbsenceSoft Admin
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## What's included
 
-In the project directory, you can run:
+Within the download you'll find the following directories and files. You'll see something like this:
 
-### `yarn install`
+```
+├── mock_server/        # mock server
+│   └── serverMock.js   # starting js file
+│
+├── packages/        # private react libraries
+│   └── as.ui.react.core   # react core library
+│
+├── public/          # static files
+│   └── index.html   # html template
+│
+├── src/             # project root
+│   ├── assets/      # images, icons, etc.
+│   ├── components/  # common components across features
+│   ├── features/    # application's features
+│   ├── store/       # redux application store definition
+│   ├── layout/      # layout components
+│   ├── styles/      # scss styles and mui theme definition
+│   ├── App.tsx
+│   ├── ...
+│   ├── index.tsx
+│   ├── routes.tsx   # routes config
+│   └── nav.tsx      # navigation config
+│
+└── package.json
+└── tailwind.config.json # tailwind cofiguration
+```
 
-Install packages
+## Installation & Build
+### Clone repo
 
-### `yarn start`
+``` bash
+# clone the repo
+$ git clone git clone  https://(MY ACCOUNT)@bitbucket.org/absencesoft/as.admin.git my-project
 
-Runs the app in the development mode.\
+# go into app's directory
+$ cd my-project
+```
+
+### Installation
+If you do not have yarn installed, you can run 'npm install --global yarn'
+
+``` bash
+$ yarn install
+```
+
+### Install all the dependency packages
+(USE YARN, DO NOT USE NPM Command) : npm installation causes multiple REACT instances in the app
+
+If you do not have yarn installed, you can run 'npm install --global yarn'
+
+(THIS COMMAND TAKES MORE THAN 10 MINUTES FOR THE FIRST TIME, SO BE PATIENT )
+
+``` bash
+# go into app's directory
+$ cd my-project
+
+# install all app's dependencies
+$ yarn install
+```
+
+### Build
+
+Run `build` to build the project. The build artifacts will be stored in the `build/` directory.
+
+
+```bash
+# build for production with minification
+$ npm run build
+```
+
+## Run App in Your Local
+Do this after install and build the app
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Local Mock Server
 
-### `yarn test`
+``` bash
+$ yarn run mockapi
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### AbsenceSoft Admin
 
-### `yarn build`
+``` bash
+$ yarn start
+```
+Login with admin/admin account
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Test
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+``` bash
+$ yarn test
+```
