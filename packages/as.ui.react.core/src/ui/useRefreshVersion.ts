@@ -8,7 +8,6 @@ import { CoreState } from '../core';
  * The UI version is an integer incremented by the refresh button;
  * it serves to force running fetch hooks again.
  */
-const useRefreshVersion = () =>
-  useSelector((state: CoreState) => state.core.ui.refreshVersion);
+const useRefreshVersion = () => useSelector((state: CoreState) => state.core.ui.refreshVersion);
 
 export default useRefreshVersion;

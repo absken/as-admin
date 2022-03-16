@@ -1,8 +1,4 @@
-import {
-  configureStore,
-  ThunkAction,
-  Action,
-} from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
@@ -91,5 +87,4 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   CoreState,
   unknown,
   Action<string>
-  >;
-
+>;

@@ -34,9 +34,7 @@ import { CoreState } from '../core';
 const useNavVisibleInfo = () => {
   const dispatch = useDispatch();
 
-  const navVisibleGroup = useSelector(
-    (state: CoreState) => state.core.navigation.navVisibleGroup
-  );
+  const navVisibleGroup = useSelector((state: CoreState) => state.core.navigation.navVisibleGroup);
   const navActiveKey = useSelector((state: CoreState) => state.core.navigation.navActiveKey);
 
   const setNavVisibleGroup = useCallback(
