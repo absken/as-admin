@@ -2,10 +2,6 @@ import { ReactNode, Dispatch } from 'react';
 import { History } from 'history';
 import { Store } from 'redux';
 
-import { CoreReduxState } from './store/core.reducer';
-
-export { CoreReduxState };
-
 export type CustomInterceptor = (
   store: Store<any>
 ) => (next: (action: any) => void) => (action: any) => void;

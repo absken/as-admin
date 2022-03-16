@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as NavigationActions from './store/navigation.action';
-import { CoreReduxState } from '../types';
+import { CoreState } from '../core';
 
 /**
  * Get Navigation visible info for Sidebar display
@@ -35,9 +35,9 @@ const useNavVisibleInfo = () => {
   const dispatch = useDispatch();
 
   const navVisibleGroup = useSelector(
-    (state: CoreReduxState) => state.core.navigation.navVisibleGroup
+    (state: CoreState) => state.core.navigation.navVisibleGroup
   );
-  const navActiveKey = useSelector((state: CoreReduxState) => state.core.navigation.navActiveKey);
+  const navActiveKey = useSelector((state: CoreState) => state.core.navigation.navActiveKey);
 
   const setNavVisibleGroup = useCallback(
     (navVisibleGroup) => {

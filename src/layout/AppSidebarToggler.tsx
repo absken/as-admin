@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 
-import { CoreReduxState, useAppNavigation } from '@as/ui-react-core';
+import { CoreState, useAppNavigation } from '@as/ui-react-core';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { Button } from '@mui/material';
 import * as LayoutActions from './store/layout.action';
@@ -11,7 +11,7 @@ function AppSidebarToggler() {
   const dispatch = useDispatch();
   const navigation = useAppNavigation();
 
-  const unfoldable = useSelector((state: CoreReduxState) => state.layout.sidebarUnfoldable);
+  const unfoldable = useSelector((state: CoreState) => state.layout.sidebarUnfoldable);
 
   const handleChange = () => {
     dispatch(LayoutActions.setUI({ sidebarUnfoldable: !unfoldable }));

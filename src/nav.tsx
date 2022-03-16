@@ -41,15 +41,9 @@ const nav = [
   },
   {
     component: AsSidebarNavItem,
-    name: 'First Menu',
-    to: '/first-menu',
+    name: 'Workflow Items',
+    to: '/workflows',
     icon: <MdOutlineDashboardCustomize className="nav-icon" />,
-  },
-  {
-    component: AsSidebarNavItem,
-    name: 'Second Menu',
-    to: '/first-menu',
-    icon: <BsDroplet className="nav-icon" />,
   },
   {
     component: AsSidebarNavItem,
@@ -82,6 +76,12 @@ const nav = [
         icon: <BsStar className="nav-icon" />,
       },
     ],
+  },
+  {
+    component: AsSidebarNavItem,
+    name: 'Counter',
+    to: '/counter',
+    icon: <BsDroplet className="nav-icon" />,
   },
   {
     component: AsSidebarNavTitle,

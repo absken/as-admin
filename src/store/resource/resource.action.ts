@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import lodKeys from 'lodash/keys';
 import lodIsEmpty from 'lodash/isEmpty';
-import { fetchUtils, undoableDispatch, CoreReduxState } from '@as/ui-react-core';
+import { fetchUtils, undoableDispatch, CoreState } from '@as/ui-react-core';
 
 import { appConfig } from '../../appConfig';
 import { selectResource, selectResources } from '../../store';
@@ -145,7 +145,7 @@ export const deleteResourceSuccessAction = (name: string, id: string | number) =
 //-------------------------------------------------------------------------
 export const requestResource =
   (name: string, payload: any = {}, params: SideEffectParams = { next: () => {} }) =>
-  (dispatch: Dispatch<any>, getState: () => CoreReduxState) => {
+  (dispatch: Dispatch<any>, getState: () => CoreState) => {
     // Check to see if the record is already loaded.
     // const previousRecord = selectResource(name, getState());
     // if (previousRecords.id === id) {
@@ -195,7 +195,7 @@ export const deleteResource = (
   params: SideEffectParams = { next: () => {} }
 ) => {
   // eslint-disable-next-line consistent-return
-  return (dispatch: Dispatch<any>, getState: () => CoreReduxState) => {
+  return (dispatch: Dispatch<any>, getState: () => CoreState) => {
     const { undoable = true } = params;
     const url = `${appConfig.app.projectUrl}/${name}/${payload.id}`;
     const resourcesState = selectResources(name, getState());
@@ -258,7 +258,7 @@ const fetchDeleteResource =
     params: SideEffectParams = { next: () => {} },
     url: string,
     dispatch: Dispatch<any>,
-    getState: () => CoreReduxState
+    getState: () => CoreState
   ) =>
   () => {
     const { query = {}, fetchOptions = {}, next } = params;

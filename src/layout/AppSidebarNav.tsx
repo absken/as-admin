@@ -44,7 +44,12 @@ function AppSidebarNav(props: AppSidebarNavProps) {
     }
   }, [navVisibleGroup, items]);
 
-  const navLink = (name: string, icon?: ReactIcon, badge?: any, hasSubItems: boolean = false) => {
+  const navLinkItem = (
+    name: string,
+    icon?: ReactIcon,
+    badge?: any,
+    hasSubItems: boolean = false
+  ) => {
     return (
       <>
         {icon && icon}
@@ -105,7 +110,7 @@ function AppSidebarNav(props: AppSidebarNavProps) {
         key={index}
         {...rest}
       >
-        {navLink(name, icon, badge, !!item.items)}
+        {navLinkItem(name, icon, badge, !!item.items)}
       </Component>
     );
   };

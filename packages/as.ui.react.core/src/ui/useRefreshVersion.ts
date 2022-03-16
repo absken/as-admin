@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { CoreReduxState } from '../types';
+import { CoreState } from '../core';
 
 /**
  * Get the UI version from the store
@@ -9,6 +9,6 @@ import { CoreReduxState } from '../types';
  * it serves to force running fetch hooks again.
  */
 const useRefreshVersion = () =>
-  useSelector((state: CoreReduxState) => state.core.ui.refreshVersion);
+  useSelector((state: CoreState) => state.core.ui.refreshVersion);
 
 export default useRefreshVersion;

@@ -6,7 +6,8 @@
 @import 'additional-styles/range-slider.scss';
 @import 'additional-styles/toggle-switch.scss';
 @import 'additional-styles/theme.scss';
-@import 'sidebar/_sidebar.scss';
+@import 'sidebar/sidebar';
+@import 'datagrid/datagrid';
 
 @tailwind utilities;
 

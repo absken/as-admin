@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useAppNavigation, CoreReduxState } from '@as/ui-react-core';
+import { useAppNavigation, CoreState } from '@as/ui-react-core';
 
 import { AsSidebar, AsSidebarNav } from '../components';
 import AppSidebarNav from './AppSidebarNav';
@@ -10,8 +10,8 @@ import * as LayoutActions from './store/layout.action';
 function AppSidebar() {
   const dispatch = useDispatch();
   const navigation = useAppNavigation();
-  const sidebarShow = useSelector((state: CoreReduxState) => state.layout.sidebarShow);
-  const unfoldable = useSelector((state: CoreReduxState) => state.layout.sidebarUnfoldable);
+  const sidebarShow = useSelector((state: CoreState) => state.layout.sidebarShow);
+  const unfoldable = useSelector((state: CoreState) => state.layout.sidebarUnfoldable);
 
   return (
     <AsSidebar

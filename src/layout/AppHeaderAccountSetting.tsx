@@ -3,7 +3,6 @@ import { Tooltip, Menu, IconButton, MenuItem, ListItemIcon, Divider, Fab } from 
 import { MdPersonAdd, MdSettings, MdLogout } from 'react-icons/md';
 
 import { useLogout } from '@as/ui-react-core';
-import avatar8 from './../../assets/images/avatars/8.jpg';
 
 function AppHeaderAccountSetting() {
   const logout = useLogout();

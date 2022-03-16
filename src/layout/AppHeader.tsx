@@ -6,13 +6,11 @@ import {
   MdViewHeadline,
   MdOutlineNotificationsActive,
   MdVerticalSplit,
-  MdRefresh,
-  MdMenu,
   MdSearch,
   MdArrowDropDown,
 } from 'react-icons/md';
 
-import { CoreReduxState, useRefreshPage } from '@as/ui-react-core';
+import { CoreState, useRefreshPage } from '@as/ui-react-core';
 import logoIcon from '../assets/images/as-logo-icon.png';
 import AppHeaderAccountSetting from './AppHeaderAccountSetting';
 import * as LayoutActions from '../layout/store/layout.action';
@@ -62,8 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function AppHeader() {
   const dispatch = useDispatch();
   const refreshPage = useRefreshPage();
-  const sidebarShow = useSelector((state: CoreReduxState) => state.layout.sidebarShow);
-  const sidebarEndShow = useSelector((state: CoreReduxState) => state.layout.sidebarEndShow);
+  const sidebarShow = useSelector((state: CoreState) => state.layout.sidebarShow);
+  const sidebarEndShow = useSelector((state: CoreState) => state.layout.sidebarEndShow);
 
   return (
     <nav className="shadow-md bg-secondary border-b border-gray-200 fixed z-30 w-full text-white">

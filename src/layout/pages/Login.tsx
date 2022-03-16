@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Button, Link, TextField, Checkbox, CircularProgress, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { useLogin, AuthActions, useThemeType, CoreReduxState } from '@as/ui-react-core';
+import { useLogin, AuthActions, useThemeType, CoreState } from '@as/ui-react-core';
 
 import { getAppTheme } from '../../styles/theme/themes';
 import logoIcon from '../../assets/images/as-logo-icon.png';
@@ -24,9 +24,9 @@ function Login(props: any) {
   });
   const [submitted, setSubmitted] = useState(false);
   const { username, password } = inputs;
-  const loggingIn = useSelector((state: CoreReduxState) => state.auth.isLoading);
-  const sysError = useSelector((state: CoreReduxState) => state.auth.error);
-  const customError = useSelector((state: CoreReduxState) => state.auth.customError);
+  const loggingIn = useSelector((state: CoreState) => state.auth.isLoading);
+  const sysError = useSelector((state: CoreState) => state.auth.error);
+  const customError = useSelector((state: CoreState) => state.auth.customError);
 
   // make sure login status is reset
   useEffect(() => {

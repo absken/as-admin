@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SimpleBarReact from 'simplebar-react';
 import { BsX } from 'react-icons/bs';
 import { Tabs, Tab, Typography, Box, IconButton } from '@mui/material';
-import { CoreReduxState } from '@as/ui-react-core';
+import { CoreState } from '@as/ui-react-core';
 
 import { AsSidebar, AsSidebarNav } from '../components';
 import * as LayoutActions from './store/layout.action';
@@ -43,7 +43,7 @@ function a11yProps(index: number) {
 
 function AppSidebarEnd() {
   const dispatch = useDispatch();
-  const sidebarEndShow = useSelector((state: CoreReduxState) => state.layout.sidebarEndShow);
+  const sidebarEndShow = useSelector((state: CoreState) => state.layout.sidebarEndShow);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

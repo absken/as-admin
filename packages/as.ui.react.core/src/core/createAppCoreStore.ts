@@ -1,3 +1,8 @@
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+} from '@reduxjs/toolkit';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
@@ -30,13 +35,10 @@ const createAppCoreStore = ({
   initialState,
 }: Params) => {
   const appReducer = createAppReducer(appCustomReducers, history);
-  const middleware: any[] = [thunk, coreInterceptor, appCustomInterceptor];
+  const middleware: any[] = [coreInterceptor, appCustomInterceptor];
   if (history) {
     middleware.push(routerMiddleware(history));
   }
-
-  // if there is any
-  const addonEnhancers: any[] = [];
 
   // install dev tools as you need
   const typedWindow = typeof window !== 'undefined' && (window as Window);
@@ -59,15 +61,35 @@ const createAppCoreStore = ({
     middleware.push(logger);
   }
 
-  const cpEnhancers = composeEnhancers(applyMiddleware(...middleware), ...addonEnhancers);
+  // const cpEnhancers = composeEnhancers(applyMiddleware(...middleware), ...addonEnhancers);
+  //
+  // const store: Store<any, any> = createStore(
+  //   appReducer,
+  //   typeof initialState === 'function' ? initialState() : initialState,
+  //   cpEnhancers
+  // );
 
-  const store: Store<any, any> = createStore(
-    appReducer,
-    typeof initialState === 'function' ? initialState() : initialState,
-    cpEnhancers
-  );
+  const store = configureStore({
+    reducer: appReducer,
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), ...middleware],
+    devTools: process.env.REACT_APP_STAGE !== 'production',
+    preloadedState: typeof initialState === 'function' ? initialState() : initialState,
+  });
 
   return store;
 };
 
 export default createAppCoreStore;
+
+type AppStore = ReturnType<typeof createAppCoreStore>;
+
+type AppStoreGetState = AppStore['getState'];
+export type CoreState = ReturnType<AppStoreGetState> & { [key: string]: any };
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  CoreState,
+  unknown,
+  Action<string>
+  >;
+

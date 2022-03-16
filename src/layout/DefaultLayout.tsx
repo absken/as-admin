@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { CircularProgress, ThemeProvider } from '@mui/material';
 import classNames from 'classnames';
-import { CoreReduxState, useThemeType, useTriggerSessionChecker } from '@as/ui-react-core';
+import { useThemeType, useTriggerSessionChecker } from '@as/ui-react-core';
 import { createTheme } from '@mui/material/styles';
 
 import {
@@ -23,7 +22,6 @@ function DefaultLayout(props: any) {
   useTriggerSessionChecker();
 
   const themeType = useThemeType();
-  const sidebarShow = useSelector((state: CoreReduxState) => state.layout.sidebarShow);
   const { error: messageResourceError, isMessageResourceSet } = useGetMessageResource(['app']);
 
   const appTheme = useMemo(() => {

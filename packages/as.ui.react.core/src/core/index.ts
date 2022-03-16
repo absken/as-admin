@@ -1,12 +1,14 @@
 import AppCore from './AppCore';
 import AppCoreContext from './AppCoreContext';
-import createAppCoreStore from './createAppCoreStore';
+import createAppCoreStore, { CoreState, AppThunk } from './createAppCoreStore';
 import { getHistoryInstance, getStoredHistoryInstance } from './getHistory';
 
 export {
   AppCore,
   AppCoreContext,
   createAppCoreStore,
+  CoreState,
+  AppThunk,
   getHistoryInstance,
   getStoredHistoryInstance,
 };

@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { CoreReduxState } from '@as/ui-react-core';
+import { CoreState } from '@as/ui-react-core';
 import counterReducer from '../features/counter/counterSlice';
 // ------------------------------------
 
@@ -8,8 +8,8 @@ import useGetMessageResource from './messageResource/useGetMessageResource';
 import useDeleteResource from './resource/useDeleteResource';
 import useDeleteResources from './resources/useDeleteResources';
 
-const selectResource = (name: string, state: CoreReduxState) => state[name].resource;
-const selectResources = (name: string, state: CoreReduxState) => state[name].resources;
+const selectResource = (name: string, state: CoreState) => state[name].resource;
+const selectResources = (name: string, state: CoreState) => state[name].resources;
 
 export {
   appReducer,
@@ -21,17 +21,17 @@ export {
 };
 // ------------------------------------
 
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
-
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+// export const store = configureStore({
+//   reducer: {
+//     counter: counterReducer,
+//   },
+// });
+//
+// export type AppDispatch = typeof store.dispatch;
+// export type RootState = ReturnType<typeof store.getState>;
+// export type AppThunk<ReturnType = void> = ThunkAction<
+//   ReturnType,
+//   RootState,
+//   unknown,
+//   Action<string>
+// >;

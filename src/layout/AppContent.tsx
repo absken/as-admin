@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { Container } from '@mui/material';
-
 import { WithPermissions } from '@as/ui-react-core';
 // routes config
 import routes, { homeRoute } from '../routes';

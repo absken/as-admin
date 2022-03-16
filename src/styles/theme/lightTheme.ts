@@ -2,7 +2,14 @@ import { buttonClasses } from '@mui/material/Button';
 import { utils } from '@as/ui-react-core';
 
 const lightTheme: any = {
-  palette: {},
+  palette: {
+    primary: {
+      main: utils.getStyle('--as-primary'),
+    },
+    secondary: {
+      main: utils.getStyle('--as-secondary'),
+    },
+  },
   breakpoints: {
     values: {
       xs: 'var(--as-breakpoint-xs)',

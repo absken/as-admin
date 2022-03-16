@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import lodKeys from 'lodash/keys';
 import lodIsEmpty from 'lodash/isEmpty';
-import { CoreReduxState, fetchUtils, undoableDispatch } from '@as/ui-react-core';
+import { CoreState, fetchUtils, undoableDispatch } from '@as/ui-react-core';
 
 import { appConfig } from '../../appConfig';
 import { selectResource, selectResources } from '../../store';
@@ -164,7 +164,7 @@ export const deleteResourcesSuccessAction = (name: string, ids: string[] | numbe
 //-------------------------------------------------------------------------
 export const getResources =
   (name: string, payload: any = {}, params: SideEffectParams = { next: () => {} }) =>
-  (dispatch: Dispatch<any>, getState: () => CoreReduxState) => {
+  (dispatch: Dispatch<any>, getState: () => CoreState) => {
     const { page = 1, query = {}, accumulate = false, fetchOptions = {}, next } = params;
     const url = `${appConfig.app.projectUrl}/${name}}`;
 
@@ -237,7 +237,7 @@ export const getResources =
 
 export const deleteResources = (name: string, payload: any = {}, params: any = {}) => {
   // eslint-disable-next-line consistent-return
-  return (dispatch: Dispatch<any>, getState: () => CoreReduxState) => {
+  return (dispatch: Dispatch<any>, getState: () => CoreState) => {
     const { undoable = true } = params;
     const url = `${appConfig.app.projectUrl}/${name}/delete?ids=${payload.ids.join(',')}`;
     const resourcesState = selectResources(name, getState());
@@ -301,7 +301,7 @@ const fetchDeleteResources =
     params: any,
     url: string,
     dispatch: Dispatch<any>,
-    getState: () => CoreReduxState
+    getState: () => CoreState
   ) =>
   () => {
     const { query = {}, fetchOptions = {}, next = () => {} } = params;
