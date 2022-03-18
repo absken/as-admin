@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.all('*', function(req, resp, next) {
+app.all('*', function (req, resp, next) {
   console.log(chalk.blue(JSON.stringify(req.body)));
   next();
 });
