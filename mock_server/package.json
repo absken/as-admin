@@ -1,9 +1,11 @@
 {
-  "name": "ps-mock-server",
+  "name": "as-mock-server",
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node ./serverMock.js"
+    "start": "nodemon --exec babel-node ./start.js",
+    "sample-data": "node ./data/load-sample-data.js",
+    "blow-sample-data": "node ./data/load-sample-data.js --delete"
   },
   "dependencies": {
     "@babel/cli": "^7.11.6",
@@ -13,8 +15,10 @@
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "del": "^6.0.0",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
+    "mongoose": "^6.2.7",
     "nodemon": "^2.0.4"
   }
 }

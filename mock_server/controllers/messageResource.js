@@ -1,7 +1,7 @@
 import express from 'express';
 import chalk from 'chalk';
 
-import { conf } from '../config';
+import { conf } from '../config/config';
 import { getJsonFromFile } from '../utils';
 
 const router = express.Router();

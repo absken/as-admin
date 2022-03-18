@@ -12,12 +12,12 @@ const lightTheme: any = {
   },
   breakpoints: {
     values: {
-      xs: 'var(--as-breakpoint-xs)',
-      sm: 'var(--as-breakpoint-sm)',
-      md: 'var(--as-breakpoint-md)',
-      lg: 'var(--as-breakpoint-lg)',
-      xl: 'var(--as-breakpoint-xl)',
-      xxl: 'var(--as-breakpoint-xxl)',
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200,
+      xxl: 1400,
     },
   },
   components: {

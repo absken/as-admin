@@ -54,14 +54,14 @@ function Login(props: any) {
   return (
     <ThemeProvider theme={appTheme}>
       <div className="bg-body">
-        <nav className="shadow-md bg-secondary border-b border-gray-200 fixed z-30 w-full text-white">
+        <nav className="shadow-md bg-primary border-b border-gray-200 fixed z-30 w-full text-white">
           <div className="px-3 py-3 lg:px-5 lg:pl-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center justify-start">
                 <a href="aaa" className="text-xl font-bold flex items-center lg:ml-2.5">
                   <img src={logoIcon} alt="AbsenceSoft Admin" className="h-7 mr-2" />
                   <span className="self-center whitespace-nowrap">
-                    AbsenceSoft <span className="text-primary">Admin</span>
+                    AbsenceSoft <span className="text-secondary">Admin</span>
                   </span>
                 </a>
               </div>
@@ -79,6 +79,7 @@ function Login(props: any) {
                   <div>
                     <TextField
                       variant="outlined"
+                      color="secondary"
                       margin="normal"
                       required
                       fullWidth
@@ -93,6 +94,7 @@ function Login(props: any) {
                   <div>
                     <TextField
                       variant="outlined"
+                      color="secondary"
                       margin="normal"
                       required
                       fullWidth
@@ -118,7 +120,7 @@ function Login(props: any) {
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <Link
                       component="button"
-                      className="text-sm text-primary ml-auto"
+                      className="text-sm text-secondary ml-auto"
                       underline="hover"
                     >
                       Forgot password?
@@ -126,7 +128,7 @@ function Login(props: any) {
                   </div>
                   <Button
                     variant="contained"
-                    className="btn bg-primary hover:bg-primary-hover text-white font-bold w-full sm:w-auto"
+                    className="btn bg-secondary hover:bg-secondary-hover text-white font-bold w-full sm:w-auto"
                     disabled={loggingIn}
                     onClick={handleSubmit}
                   >
@@ -139,7 +141,7 @@ function Login(props: any) {
                     Not registered? {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <Link
                       component="button"
-                      className="text-sm text-primary font-bold ml-auto"
+                      className="text-sm text-secondary font-bold ml-auto"
                       underline="hover"
                     >
                       Create account

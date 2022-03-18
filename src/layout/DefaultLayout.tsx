@@ -39,26 +39,26 @@ function DefaultLayout(props: any) {
 
   if (!isMessageResourceSet) {
     return (
-      <div className="bg-light min-vh-100 d-flex flex-row align-items-center justify-content-center">
+      <div className="flex min-h-screen flex-row items-center justify-center">
         <CircularProgress size="3em" />
       </div>
     );
   }
 
   const classNameDefaultLayout = classNames(
-    'layout-body flex flex-col h-full w-full min-h-[calc(100vh-58px)] bg-body relative overflow-y-auto transition-padding duration-150'
+    'layout-body flex flex-col h-full w-full min-h-[calc(100vh-4rem)] bg-body relative overflow-y-auto transition-padding duration-150'
   );
 
   return (
     <ThemeProvider theme={appTheme}>
       <div className="bg-body">
         <AppHeader />
-        <div className="flex overflow-hidden pt-14">
+        <div className="flex pt-16">
           <AppSidebar />
           <AppSidebarEnd />
           <div className={classNameDefaultLayout}>
             <AppBreadcrumb />
-            <div className="grow">
+            <div className="grow pt-12 pb-8">
               <AppContent />
             </div>
             <AppFooter />

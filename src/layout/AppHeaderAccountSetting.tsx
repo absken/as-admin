@@ -21,7 +21,7 @@ function AppHeaderAccountSetting() {
     <>
       <Tooltip title="Account settings">
         <Fab
-          className="shadow-sm hover:bg-body w-8 h-8 min-h-[30px] bg-white text-secondary font-extrabold"
+          className="shadow-sm hover:bg-body w-8 h-8 min-h-[30px] bg-white text-primary font-extrabold"
           aria-label="add"
           onClick={handleClick}
         >

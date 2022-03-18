@@ -1,0 +1,48 @@
+version: '3.3'
+services:
+  mongo_db:
+    container_name: mongo_db
+    image: mongo:latest
+    restart: always
+    ports:
+      - ${MONGODB_LOCAL_PORT}:${MONGODB_DOCKER_PORT}
+    volumes:
+      - mongo_db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGODB_USER
+      MONGO_INITDB_ROOT_PASSWORD: $MONGODB_PASSWORD
+
+  # Mongo Express Service
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - ${MONGOEXPRESS_LOCAL_PORT}:${MONGOEXPRESS_DOCKER_PORT}
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: $MONGODB_USER
+      ME_CONFIG_MONGODB_ADMINPASSWORD: $MONGODB_PASSWORD
+      ME_CONFIG_MONGODB_SERVER: mongo_db
+
+  app:
+    container_name: mock-server
+    depends_on:
+      - mongo_db
+    build: .
+    restart: always
+    ports:
+      - ${NODE_LOCAL_PORT}:${NODE_DOCKER_PORT}
+      - 9229:9229
+    volumes:
+      - .:/mock_server
+    environment:
+      - MONGODB_HOST=$MONGODB_HOST
+      - MONGODB_USER=$MONGODB_USER
+      - MONGODB_PASSWORD=$MONGODB_PASSWORD
+      - MONGODB_DATABASE=$MONGODB_DATABASE
+      - MONGODB_DOCKER_PORT=$MONGODB_DOCKER_PORT
+    stdin_open: true
+    tty: true
+
+volumes:
+  mongo_db: {}

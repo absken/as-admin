@@ -64,7 +64,7 @@ function AppHeader() {
   const sidebarEndShow = useSelector((state: CoreState) => state.layout.sidebarEndShow);
 
   return (
-    <nav className="shadow-md bg-secondary border-b border-gray-200 fixed z-30 w-full text-white">
+    <nav className="shadow-md bg-primary border-b border-gray-200 fixed z-30 w-full text-white">
       <div className="px-3 py-2 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -78,7 +78,7 @@ function AppHeader() {
             <a href="aaa" className="text-xl font-bold flex items-center lg:ml-2.5">
               <img src={logoIcon} alt="AbsenceSoft Admin" className="h-7 mr-2" />
               <span className="self-center whitespace-nowrap">
-                AbsenceSoft <span className="text-primary">Admin</span>
+                AbsenceSoft <span className="text-secondary">Admin</span>
               </span>
             </a>
             <MenuItem className="ml-12 font-bold" key="MENU1">

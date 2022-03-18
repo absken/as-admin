@@ -87,6 +87,24 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ```bash
 $ yarn run mockapi
+
+# if there is mongodb running in your local
+$ sudo service mongod stop
+
+# start docker mongodb
+$ cd mock_server
+$ docker-compose -f docker-compose.yml up -d
+
+# load sample data
+$ cd mock_server
+$ npm run sample-data
+# want to clear all data
+$ npm run blow-sample-data
+
+# to stop docker mongodb
+$ cd mock_server
+$ docker-compose -f docker-compose.yml down
+
 ```
 
 ### AbsenceSoft Admin

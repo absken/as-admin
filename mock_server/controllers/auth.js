@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { conf } from '../config';
+import { conf } from '../config/config';
 import { getJsonFromFile } from '../utils';
 
 const router = express.Router();

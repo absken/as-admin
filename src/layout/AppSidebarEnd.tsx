@@ -73,8 +73,8 @@ function AppSidebarEnd() {
             <Tabs
               value={value}
               onChange={handleChange}
-              textColor="secondary"
-              indicatorColor="secondary"
+              textColor="primary"
+              indicatorColor="primary"
               className="mt-2"
               aria-label="basic tabs example"
             >

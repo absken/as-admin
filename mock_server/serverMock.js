@@ -5,10 +5,10 @@ import chalk from 'chalk';
 import auth from './controllers/auth';
 import messageResource from './controllers/messageResource';
 import customer from './controllers/customer';
-
-const port = process.env.PORT || 3005;
+import workflow from './controllers/workflow';
 
 const app = express();
+
 const allowedOrigins = ['http://localhost:3000', 'http://as-ess.surge.sh'];
 
 app.use(bodyParser.json());
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.all('*', function (req, resp, next) {
+app.all('*', function(req, resp, next) {
   console.log(chalk.blue(JSON.stringify(req.body)));
   next();
 });
@@ -35,14 +35,8 @@ app.all('*', function (req, resp, next) {
 app.use('/auth', auth);
 app.use('/messageResource', messageResource);
 app.use('/customers', customer);
+app.use('/workflows', workflow);
 
-// if port is in  use, sudo kill -9 `sudo lsof -t -i:3005`
-app.listen(port, function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(chalk.bgBlack(`Mock server is listening a on port ${port}!`));
-  }
-});
+module.exports = app;
 
 ///////////////////////////////////////////////////////

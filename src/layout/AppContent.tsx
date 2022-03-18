@@ -8,34 +8,32 @@ const loading = <div>Please wait...</div>;
 
 function AppContent() {
   return (
-    <main>
-      <Suspense fallback={loading}>
-        <Switch>
-          {routes.map((route: any, idx) => {
-            return (
-              route.component && (
-                <Route
-                  key={route.name}
-                  path={route.path}
-                  exact={route.exact}
-                  render={(routeProps) => (
-                    <WithPermissions component={route.component} {...routeProps} route={route} />
-                  )}
-                />
-              )
-            );
-          })}
-          <Route
-            exact={homeRoute.exact}
-            path={homeRoute.path}
-            render={(routeProps) => (
-              <WithPermissions component={homeRoute.component} {...routeProps} route={homeRoute} />
-            )}
-          />
-          <Redirect to="/404" />
-        </Switch>
-      </Suspense>
-    </main>
+    <Suspense fallback={loading}>
+      <Switch>
+        {routes.map((route: any, idx) => {
+          return (
+            route.component && (
+              <Route
+                key={route.name}
+                path={route.path}
+                exact={route.exact}
+                render={(routeProps) => (
+                  <WithPermissions component={route.component} {...routeProps} route={route} />
+                )}
+              />
+            )
+          );
+        })}
+        <Route
+          exact={homeRoute.exact}
+          path={homeRoute.path}
+          render={(routeProps) => (
+            <WithPermissions component={homeRoute.component} {...routeProps} route={homeRoute} />
+          )}
+        />
+        <Redirect to="/404" />
+      </Switch>
+    </Suspense>
   );
 }
 

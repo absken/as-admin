@@ -124,10 +124,10 @@ export const requestResourcesAction = (name: string, page: number, url: string, 
   payload: { page, url, params },
 });
 
-export const requestResourcesSuccessAction = (name: string, data: any) => ({
+export const requestResourcesSuccessAction = (name: string, data: any, pagination: any) => ({
   type: REQUEST_RESOURCES_SUCCESS,
   name,
-  payload: { data },
+  payload: { data, pagination },
 });
 
 export const accumulateResourcesAction = (
@@ -165,28 +165,49 @@ export const deleteResourcesSuccessAction = (name: string, ids: string[] | numbe
 export const getResources =
   (name: string, payload: any = {}, params: SideEffectParams = { next: () => {} }) =>
   (dispatch: Dispatch<any>, getState: () => CoreState) => {
-    const { page = 1, query = {}, accumulate = false, fetchOptions = {}, next } = params;
-    const url = `${appConfig.app.projectUrl}/${name}}`;
+    const {
+      page = 1,
+      limit,
+      filter,
+      select,
+      sort,
+      accumulate = false,
+      fetchOptions = {},
+      next,
+    } = params;
+    const url = `${appConfig.app.projectUrl}/${name}`;
+    const {
+      limit: sLimit,
+      filter: sFilter,
+      select: sSelect,
+      sort: sSort,
+    } = selectResources(name, getState());
 
-    // only filter can be updated dynamically
-    // other values can be update by another Action
-    const { limit, filter, select, sort } = selectResources(name, getState());
-    const requestParams = { filter, ...query };
+    const finalLimit = limit || sLimit;
+    const finalSelect = select || sSelect;
+    const finalSort = sort || sSort;
+    const requestParams = { ...filter, ...sFilter };
 
-    if (page !== 1) {
-      requestParams.skip = (page - 1) * limit;
+    if (page) {
+      requestParams.page = page;
     } else {
-      delete requestParams.skip;
+      delete requestParams.page;
+    }
+
+    if (limit) {
+      requestParams.limit = finalLimit;
+    } else {
+      delete requestParams.limit;
     }
 
     if (select) {
-      requestParams.select = select;
+      requestParams.select = finalSelect;
     } else {
       delete requestParams.select;
     }
 
     if (sort) {
-      requestParams.sort = sort;
+      requestParams.sort = finalSort;
     } else {
       delete requestParams.sort;
     }
@@ -198,7 +219,7 @@ export const getResources =
     }
 
     return fetchUtils
-      .fetchJson(url, 'GET', null, { query: requestParams, fetchOptions })
+      .fetchJson(url, 'GET', payload, { query: requestParams, fetchOptions })
       .then((response) => {
         const respJson = response.json;
         const respData = respJson && respJson.data;
@@ -206,11 +227,16 @@ export const getResources =
         if (respJson.status === 'success') {
           const keys = lodKeys(respData);
           const peeledData = respData[keys[0]];
+          const pagination = {
+            numPages: respData.zPages,
+            page: respData.zPage,
+            total: respData.zCount,
+          };
 
           if (accumulate) {
             dispatch(accumulateResourcesSuccessAction(name, peeledData));
           } else {
-            dispatch(requestResourcesSuccessAction(name, peeledData));
+            dispatch(requestResourcesSuccessAction(name, peeledData, pagination));
           }
 
           // sync resource state

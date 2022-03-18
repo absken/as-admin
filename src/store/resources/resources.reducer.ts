@@ -89,24 +89,17 @@ export function resources(config: any) {
             page: action.payload.page,
           },
           url: action.payload.url,
-          data: {},
-          ids: [],
           error: null,
           customError: null,
         };
       case ResourcesActions.REQUEST_RESOURCES_SUCCESS:
-        total = action.payload.data.serverCount;
         newRecordsById = lodKeyBy(action.payload.data || [], 'id');
         newIds = lodMap(action.payload.data || [], 'id');
 
         return {
           ...state,
           isLoading: false,
-          pagination: {
-            ...state.pagination,
-            numPages: Math.ceil(total / state.limit),
-            total,
-          },
+          pagination: action.payload.pagination,
           data: newRecordsById,
           ids: newIds,
           error: null,

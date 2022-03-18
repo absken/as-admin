@@ -18,7 +18,7 @@ function AppSidebarToggler() {
   };
 
   const classNameButton = classNames(
-    'flex justify-end border-r border-gray-200 bg-gray-200 rounded-none py-2 px-4 text-secondary hidden hover:bg-gray-300 md:flex'
+    'flex justify-end border-r border-gray-200 bg-gray-200 rounded-none py-2 px-4 text-primary hidden hover:bg-gray-300 md:flex'
   );
 
   const classNameSidebarTogglerIcon = classNames(

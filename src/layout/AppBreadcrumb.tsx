@@ -18,7 +18,7 @@ function AppBreadcrumb() {
 
   return (
     <div
-      className="pt-2 pb-4 px-4"
+      className="fixed top-16 z-30 pt-2 pb-4 px-4 bg-[#f9fafb] w-full"
       role="presentation"
       onClick={(evt) => handleBreadcrumb(evt, '/')}
     >
@@ -31,7 +31,7 @@ function AppBreadcrumb() {
         </Link>
         <Link
           underline="hover"
-          className="text-primary"
+          className="text-secondary"
           href="/components/breadcrumbs/"
           aria-current="page"
         >
