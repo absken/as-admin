@@ -20,7 +20,7 @@ async function getWorkflows(req, res) {
   const skip = page * limit - limit;
 
   const newSort =
-    Array.isArray(sort) && sort.length > 0 ? { [sort[0].field]: sort[0].sort } : { id: 'desc' };
+    Array.isArray(sort) && sort.length > 0 ? { [sort[0].field]: sort[0].sort } : { id: 'asc' };
 
   console.log(newSort);
 
@@ -40,16 +40,18 @@ async function getWorkflows(req, res) {
     return;
   }
 
-  res.json({
-    status: 'success',
-    message: '',
-    data: {
-      workflows: workflows,
-      zPages: pages,
-      zPage: parseInt(page),
-      zCount: count,
-    },
-  });
+  setTimeout(() => {
+    res.json({
+      status: 'success',
+      message: '',
+      data: {
+        workflows: workflows,
+        zPages: pages,
+        zPage: parseInt(page),
+        zCount: count,
+      },
+    });
+  }, 3000);
 }
 
 export default router;

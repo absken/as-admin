@@ -52,7 +52,7 @@ const useGetResources = (resourceName: string, payload: any, params: any) => {
     pagination,
     error,
     customError,
-    isDataSet: false,
+    isDataSet: false, // data initialized
     refetch,
   });
 

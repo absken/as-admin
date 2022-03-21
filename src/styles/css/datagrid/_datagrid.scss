@@ -19,3 +19,15 @@
 .MuiTablePagination-actions {
   display: none;
 }
+
+.MuiDataGrid-toolbarContainer {
+  .MuiButton-root {
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .MuiTablePagination-root {
+    margin-left: 0 !important;
+  }
+}

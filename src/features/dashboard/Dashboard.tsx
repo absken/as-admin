@@ -29,7 +29,10 @@ function Dashboard(props: any) {
 
   return (
     <React.Fragment key={refreshVersion}>
-      <div className="px-6">
+      <main className="px-6">
+        <div className="pb-2">
+          <h6 className="sm:text-2xl font-bold">Dashboard</h6>
+        </div>
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <Card sx={{ minWidth: 275 }} className="shadow-md">
@@ -124,7 +127,7 @@ function Dashboard(props: any) {
             </Card>
           </Grid>
         </Grid>
-      </div>
+      </main>
     </React.Fragment>
   );
 }

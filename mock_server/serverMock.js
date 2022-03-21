@@ -28,6 +28,9 @@ app.use((req, res, next) => {
 });
 
 app.all('*', function (req, resp, next) {
+  console.log(chalk.blue('Request Query:\n'));
+  console.log(chalk.blue(JSON.stringify(req.query)));
+  console.log(chalk.blue('Request Body:\n'));
   console.log(chalk.blue(JSON.stringify(req.body)));
   next();
 });

@@ -63,9 +63,10 @@
   "scripts": {
     "start": "REACT_APP_STAGE=mock react-scripts start",
     "build": "react-scripts build",
+    "build-packages": "cd packages/as.ui.react.core && yarn run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "cd mock_server && yarn install",
+    "postinstall": "yarn run build-packages && cd mock_server && npm install",
     "lint": "eslint --ext .js,.ts,.tsx \"./packages/**/src/**/*.{js,ts,tsx}\"",
     "format": "prettier --write .",
     "prepare": "husky install"
