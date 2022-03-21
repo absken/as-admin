@@ -39,7 +39,7 @@ Within the download you'll find the following directories and files. You'll see 
 
 ```bash
 # clone the repo
-$ git clone git clone  https://(MY ACCOUNT)@bitbucket.org/absencesoft/as.admin.git my-project
+$ git clone  https://(MY ACCOUNT)@bitbucket.org/absencesoft/as.admin.git my-project
 
 # go into app's directory
 $ cd my-project
@@ -67,7 +67,7 @@ Run `build` to build the project. The build artifacts will be stored in the `bui
 
 ```bash
 # build for production with minification
-$ npm run build
+$ yarn run build
 ```
 
 ### Local Mock Server (Docker)
@@ -95,6 +95,7 @@ $ docker-compose down
 ### AbsenceSoft Admin
 
 ```bash
+# in project root
 $ yarn start
 ```
 
