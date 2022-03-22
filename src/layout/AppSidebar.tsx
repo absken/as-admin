@@ -20,7 +20,7 @@ function AppSidebar() {
       onVisibleChange={(visible: boolean) => {
         dispatch(LayoutActions.setUI({ sidebarShow: visible }));
       }}
-      className="bg-white"
+      className="app-sidebar bg-white"
     >
       <AsSidebarNav>
         <AppSidebarNav items={navigation} />

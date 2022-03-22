@@ -46,14 +46,14 @@ function DefaultLayout(props: any) {
   }
 
   const classNameDefaultLayout = classNames(
-    'layout-body flex flex-col h-full w-full min-h-[calc(100vh-4rem)] bg-body relative overflow-y-auto transition-padding duration-150'
+    'layout-body flex flex-col h-full w-full min-h-[calc(100vh-3.5rem)] bg-body relative overflow-y-auto transition-padding duration-150'
   );
 
   return (
     <ThemeProvider theme={appTheme}>
       <div className="bg-body">
         <AppHeader />
-        <div className="flex pt-16">
+        <div className="flex pt-14">
           <AppSidebar />
           <AppSidebarEnd />
           <div className={classNameDefaultLayout}>

@@ -150,7 +150,7 @@ function AppSidebarNav(props: AppSidebarNavProps) {
   };
 
   return (
-    <AsSidebarVisibleGroup>
+    <AsSidebarVisibleGroup className="app-sidebar-nav">
       <Transition in={navActiveKey === 1} timeout={{ enter: 0, exit: duration }}>
         {(state) => (
           <AsSidebarVisibleGroupItem

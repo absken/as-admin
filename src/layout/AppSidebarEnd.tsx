@@ -58,7 +58,7 @@ function AppSidebarEnd() {
       onVisibleChange={(visible) => {
         dispatch(LayoutActions.setUI({ sidebarEndShow: visible }));
       }}
-      className="bg-white"
+      className="app-sidebar-end bg-white"
     >
       <div className="flex-[0_0_4rem] bg-white">
         <div className="w-full">

@@ -64,7 +64,7 @@ function AppHeader() {
   const sidebarEndShow = useSelector((state: CoreState) => state.layout.sidebarEndShow);
 
   return (
-    <nav className="shadow-md bg-primary border-b border-gray-200 fixed z-30 w-full text-white">
+    <nav className="app-header shadow-md bg-primary border-b border-gray-200 fixed z-30 w-full text-white">
       <div className="px-3 py-2 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
