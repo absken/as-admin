@@ -37,6 +37,5 @@ export const appConfig = {
     extendSessionUrl: `${API_URL}/auth/extend-session`,
     authKey: 'asAdminUser',
     tokenName: 'asAdminToken',
-    secondsLeftBeforeSessionTimeout: 1450,
   },
 };
