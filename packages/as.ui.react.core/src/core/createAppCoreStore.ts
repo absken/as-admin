@@ -41,7 +41,10 @@ const createAppCoreStore = ({
 
   const store = configureStore({
     reducer: appReducer,
-    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware({ serializableCheck: false }), ...middleware],
+    middleware: (getDefaultMiddleware) => [
+      ...getDefaultMiddleware({ serializableCheck: false }),
+      ...middleware,
+    ],
     devTools: process.env.REACT_APP_STAGE !== 'production',
     preloadedState: typeof initialState === 'function' ? initialState() : initialState,
   });

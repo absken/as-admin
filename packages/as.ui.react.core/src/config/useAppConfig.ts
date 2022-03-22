@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import ConfigContext from './ConfigContext';
-import { DefaultConfig } from "./defaultConfig";
+import { DefaultConfig } from './defaultConfig';
 
 /**
  * @example
@@ -17,6 +17,6 @@ import { DefaultConfig } from "./defaultConfig";
  *     )
  * }
  */
-const useAppConfig = ():DefaultConfig => useContext(ConfigContext);
+const useAppConfig = (): DefaultConfig => useContext(ConfigContext);
 
 export default useAppConfig;

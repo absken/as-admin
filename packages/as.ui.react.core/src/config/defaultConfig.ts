@@ -1,6 +1,6 @@
 //general configuration constants
-import {ReactNode} from "react";
-import {CustomInterceptor} from "../types";
+import { ReactNode } from 'react';
+import { CustomInterceptor } from '../types';
 
 const API_SERVER: string = 'http://localhost:3005';
 
