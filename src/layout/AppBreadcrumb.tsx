@@ -1,13 +1,14 @@
 import React, { MouseEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
-import { Breadcrumbs, Link } from '@mui/material';
-import { MdNavigateNext } from 'react-icons/md';
+import { Breadcrumbs, Link, IconButton } from '@mui/material';
+import { MdNavigateNext, MdRefresh } from 'react-icons/md';
 
-import { useTranslate } from '@as/ui-react-core';
+import { useTranslate, useRefreshPage } from '@as/ui-react-core';
 
 function AppBreadcrumb() {
   const dispatch = useDispatch();
+  const refreshPage = useRefreshPage();
   const translate = useTranslate();
   // const breadcrumbs = useSelector((state) => state.core.breadcrumbs);
 
@@ -18,7 +19,7 @@ function AppBreadcrumb() {
 
   return (
     <div
-      className="fixed top-16 z-30 pt-2 pb-4 px-4 bg-[#f9fafb] w-full"
+      className="fixed top-16 z-10 pt-2 pb-4 px-4 bg-[#f9fafb] flex justify-between"
       role="presentation"
       onClick={(evt) => handleBreadcrumb(evt, '/')}
     >

@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { appReducer } from './store';
 import { appConfig } from './appConfig';
 import navigation from './nav';
+import { AsConfirm, AsNoti, AsScrollToTop } from './components';
 import './styles/css/app.scss';
 
 const loading = <div>Please wait...</div>;
@@ -34,6 +35,9 @@ function App() {
           <Route path="/" render={(props) => <DefaultLayout {...props} />} />
         </Switch>
       </React.Suspense>
+      <AsNoti />
+      <AsConfirm />
+      <AsScrollToTop />
     </AppCore>
   );
 }

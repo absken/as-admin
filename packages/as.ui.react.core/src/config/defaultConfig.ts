@@ -1,5 +1,32 @@
 //general configuration constants
+import {ReactNode} from "react";
+import {CustomInterceptor} from "../types";
+
 const API_SERVER: string = 'http://localhost:3005';
+
+export interface DefaultConfig {
+  app: {
+    projectUrl: string;
+    defaultThemeType: string;
+  };
+  auth: {
+    loginUrl: string;
+    afterLoginUrl: string;
+    authUrl: string;
+    extendSessionUrl: string;
+    authKey: string;
+    tokenName: string;
+    timeToLiveSeconds: number;
+    secondsLeftBeforeSessionTimeout: number;
+  };
+  events: {
+    data: {
+      undo: string;
+      [key: string]: any;
+    };
+    [key: string]: any;
+  };
+}
 
 const defaultConfig = {
   app: {
