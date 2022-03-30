@@ -2,7 +2,6 @@ import lodPick from 'lodash/pick';
 import lodKeyBy from 'lodash/keyBy';
 import lodMap from 'lodash/map';
 import lodIsEqual from 'lodash/isEqual';
-import lodKeys from 'lodash/keys';
 
 import * as ResourcesActions from './resources.action';
 
@@ -14,18 +13,21 @@ export type ResourcesState = {
     total: number;
   };
   limit: number;
+  search: any[];
   filter: any;
   select: string;
-  sort: string;
+  sort: any[];
   url: string;
   data: any;
   ids: string[] | number[];
+  urlCsv: string;
+  dataCsv: any[];
   error: any;
   customError: any;
 };
 
 export function resources(config: any) {
-  const { name, limit = 10, filter = {}, select = '', sort = '' } = config;
+  const { name, limit = 10, search = [], filter = {}, select = '', sort = [] } = config;
   const initialState = {
     isLoading: false,
     pagination: {
@@ -34,12 +36,15 @@ export function resources(config: any) {
       total: 0,
     },
     limit,
+    search,
     filter,
     select,
     sort,
     url: '',
     data: {},
     ids: [],
+    urlCsv: '',
+    dataCsv: [],
     error: null,
     customError: null,
   };
@@ -50,11 +55,10 @@ export function resources(config: any) {
       return state;
     }
 
-    let total;
+    let newRecords;
     let newRecordsById;
     let newIds;
     let newRecordsByIdAcc;
-    let newIdsAcc;
     let newRecordsDel;
     let newIdsDel;
 
@@ -66,6 +70,11 @@ export function resources(config: any) {
           ...state,
           error: null,
           customError: null,
+        };
+      case ResourcesActions.CLEAR_RESOURCES_CSV:
+        return {
+          ...state,
+          dataCsv: [],
         };
       case ResourcesActions.RESOURCES_FAILURE:
         return {
@@ -82,7 +91,7 @@ export function resources(config: any) {
       case ResourcesActions.REQUEST_RESOURCES:
         return {
           ...state,
-          ...lodPick(action.payload.params, ['limit', 'filter', 'select', 'sort']),
+          ...lodPick(action.payload.params, ['limit', 'select', 'sort', 'search', 'filter']),
           isLoading: true,
           pagination: {
             ...state.pagination,
@@ -93,8 +102,9 @@ export function resources(config: any) {
           customError: null,
         };
       case ResourcesActions.REQUEST_RESOURCES_SUCCESS:
-        newRecordsById = lodKeyBy(action.payload.data || [], 'id');
-        newIds = lodMap(action.payload.data || [], 'id');
+        newRecords = [...action.payload.data] || [];
+        newRecordsById = lodKeyBy(newRecords, 'id');
+        newIds = lodMap(newRecords, 'id');
 
         return {
           ...state,
@@ -105,33 +115,39 @@ export function resources(config: any) {
           error: null,
           customError: null,
         };
-      case ResourcesActions.ACCUMULATE_RESOURCES:
+      case ResourcesActions.REQUEST_RESOURCES_CSV:
         return {
           ...state,
-          ...lodPick(action.payload.params, ['limit', 'filter', 'select', 'sort']),
+          ...lodPick(action.payload.params, ['sort', 'search', 'filter']),
           isLoading: true,
-          pagination: {
-            ...state.pagination,
-            page: action.payload.page,
-          },
-          url: action.payload.url,
+          urlCsv: action.payload.url,
           error: null,
           customError: null,
         };
-      case ResourcesActions.ACCUMULATE_RESOURCES_SUCCESS:
+      case ResourcesActions.REQUEST_RESOURCES_CSV_SUCCESS:
+        newRecords = [...action.payload.data] || [];
+
+        return {
+          ...state,
+          isLoading: false,
+          dataCsv: newRecords,
+          error: null,
+          customError: null,
+        };
+      case ResourcesActions.UPDATE_RESOURCES:
         newRecordsByIdAcc = { ...state.data };
         (action.payload.data || []).forEach((record: any) => {
           newRecordsByIdAcc[record.id] = lodIsEqual(record, state.data[record.id])
             ? state.data[record.id]
             : record;
         });
-        newIdsAcc = lodKeys(newRecordsByIdAcc);
+        newIds = [...action.payload.ids];
 
         return {
           ...state,
           isLoading: false,
           data: newRecordsByIdAcc,
-          ids: newIdsAcc,
+          ids: newIds,
           error: null,
           customError: null,
         };
@@ -144,10 +160,10 @@ export function resources(config: any) {
           customError: null,
         };
       case ResourcesActions.DELETE_RESOURCES_SUCCESS:
+        newIdsDel = (state.ids as any[]).filter((el) => !action.payload.ids.includes(el));
         newRecordsDel = Object.entries(state.data)
           .filter(([key]) => !action.payload.ids.includes(key))
           .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {});
-        newIdsDel = lodKeys(newRecordsDel);
 
         return {
           ...state,

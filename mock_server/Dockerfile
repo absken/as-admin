@@ -5,4 +5,4 @@ COPY package-lock.json .
 RUN npm ci
 COPY . .
 EXPOSE 8080
-CMD ["npm", "start"]
+CMD ["npm", "run", "start-debug"]

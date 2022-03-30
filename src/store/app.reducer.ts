@@ -11,7 +11,7 @@ const appReducer = {
   messageResource: fromMessageResource.messageResource(null),
   workflows: combineReducers({
     resource: fromResource.resource({ name: 'workflows' }),
-    resources: fromResources.resources({ name: 'workflows', limit: 10 }),
+    resources: fromResources.resources({ name: 'workflows' }),
   }),
 
   // This is an example entity using redux/toolkit
@@ -21,7 +21,7 @@ const appReducer = {
     // //apiUrl/customers/:id
     resource: fromResource.resource({ name: 'customers' }),
     // //apiUrl/customers
-    resources: fromResources.resources({ name: 'customers', limit: 0 }),
+    resources: fromResources.resources({ name: 'customers' }),
   }),
 };
 

@@ -5,10 +5,7 @@ import { fetchUtils, undoableDispatch, CoreState } from '@as/ui-react-core';
 
 import { appConfig } from '../../appConfig';
 import { selectResource, selectResources } from '../../store';
-import {
-  accumulateResourcesSuccessAction,
-  deleteResourcesSuccessAction,
-} from '../resources/resources.action';
+import { updateResourcesAction, deleteResourcesSuccessAction } from '../resources/resources.action';
 import { SideEffectParams } from '../types';
 
 export const RESET_RESOURCE = '[Resource] Reset Entity';
@@ -173,7 +170,7 @@ export const requestResource =
           if (resourcesState && resourcesState.data) {
             const matchedRecord = resourcesState.data[payload.id];
             if (matchedRecord) {
-              accumulateResourcesSuccessAction(name, [matchedRecord]);
+              updateResourcesAction(name, [matchedRecord], resourcesState.ids);
             }
           }
 
@@ -199,6 +196,7 @@ export const deleteResource = (
     const { undoable = true } = params;
     const url = `${appConfig.app.projectUrl}/${name}/${payload.id}`;
     const resourcesState = selectResources(name, getState());
+    const previousIds = resourcesState.ids;
     const previousRecords: any[] = [];
 
     if (resourcesState.data[payload.id]) {
@@ -241,7 +239,7 @@ export const deleteResource = (
         );
         // sync resources state
         if (previousRecords && !lodIsEmpty(previousRecords)) {
-          dispatch(accumulateResourcesSuccessAction(name, previousRecords));
+          dispatch(updateResourcesAction(name, previousRecords, previousIds));
         }
       },
       delayedDispatch: () => {

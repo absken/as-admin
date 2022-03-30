@@ -1,31 +1,34 @@
 import captureErrorMessage from './captureErrorMessage';
-import { useForkedRef, useSafeSetState, useTimeout } from './hooks';
 import { getColor, getStyle, hexToRgb, hexToRgba, rgbToHex, darken } from './colorManupulator';
+import getQueryString from './getQueryString';
+import { useForkedRef, useSafeSetState, useTimeout } from './hooks';
 
 const utils = {
   captureErrorMessage,
-  useForkedRef,
-  useSafeSetState,
-  useTimeout,
   getColor,
   getStyle,
   hexToRgb,
   hexToRgba,
   rgbToHex,
   darken,
+  getQueryString,
+  useForkedRef,
+  useSafeSetState,
+  useTimeout,
 };
 
 export default utils;
 
 export {
   captureErrorMessage,
-  useForkedRef,
-  useSafeSetState,
-  useTimeout,
   getColor,
   getStyle,
   hexToRgb,
   hexToRgba,
   rgbToHex,
   darken,
+  getQueryString,
+  useForkedRef,
+  useSafeSetState,
+  useTimeout,
 };

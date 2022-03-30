@@ -9,7 +9,12 @@ import workflow from './controllers/workflow';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000', 'http://as-ess.surge.sh'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://as-ess.surge.sh',
+  'https://d2m7htnz6n3fxp.cloudfront.net',
+  'https://absencesoft-reactapp.com',
+];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

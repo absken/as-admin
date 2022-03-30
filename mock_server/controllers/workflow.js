@@ -10,24 +10,34 @@ const router = express.Router();
 
 //routes
 router.get('/', getWorkflows);
+router.get('/csv', getWorkflowsCsv);
 
 async function getWorkflows(req, res) {
   res.setHeader('x-jwt-token', conf.auth.xJwtToken);
 
   const page = req.query.page || 1;
-  const sort = req.query.sort && JSON.parse(req.query.sort);
   const limit = req.query.limit || 10000;
   const skip = page * limit - limit;
+  const sort = req.query.sort && JSON.parse(req.query.sort);
+  const search = req.query.search && JSON.parse(req.query.search);
 
   const newSort =
     Array.isArray(sort) && sort.length > 0 ? { [sort[0].field]: sort[0].sort } : { id: 'asc' };
 
-  console.log(newSort);
+  let re = null;
+  let mongoQuery = null;
+  if (Array.isArray(search)) {
+    mongoQuery = { $and: [] };
+    search.forEach((searchItem) => {
+      re = new RegExp(searchItem, 'i');
+      mongoQuery['$and'].push({
+        $or: [{ firstName: { $regex: re } }, { lastName: { $regex: re } }],
+      });
+    });
+  }
+  const workflowsPromise = Workflow.find(mongoQuery).skip(skip).limit(limit).sort(newSort);
 
-  // 1. Query the database for a list of all stores
-  const workflowsPromise = Workflow.find().skip(skip).limit(limit).sort(newSort);
-
-  const countPromise = Workflow.count();
+  const countPromise = Workflow.find(mongoQuery).count();
 
   const [workflows, count] = await Promise.all([workflowsPromise, countPromise]);
   const pages = Math.ceil(count / limit);
@@ -49,6 +59,40 @@ async function getWorkflows(req, res) {
         zPages: pages,
         zPage: parseInt(page),
         zCount: count,
+      },
+    });
+  }, 3000);
+}
+
+async function getWorkflowsCsv(req, res) {
+  res.setHeader('x-jwt-token', conf.auth.xJwtToken);
+
+  const sort = req.query.sort && JSON.parse(req.query.sort);
+  const search = req.query.search && JSON.parse(req.query.search);
+
+  const newSort =
+    Array.isArray(sort) && sort.length > 0 ? { [sort[0].field]: sort[0].sort } : { id: 'asc' };
+
+  let re = null;
+  let mongoQuery = null;
+  if (Array.isArray(search)) {
+    mongoQuery = { $and: [] };
+    search.forEach((searchItem) => {
+      re = new RegExp(searchItem, 'i');
+      mongoQuery['$and'].push({
+        $or: [{ firstName: { $regex: re } }, { lastName: { $regex: re } }],
+      });
+    });
+  }
+
+  const workflows = await Workflow.find(mongoQuery).sort(newSort);
+
+  setTimeout(() => {
+    res.json({
+      status: 'success',
+      message: '',
+      data: {
+        workflows: workflows,
       },
     });
   }, 3000);

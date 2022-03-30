@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState, useCallback } from 'react';
+import { useContext, useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import lodGet from 'lodash/get';
-import lodMerge from 'lodash/merge';
 import { useRefreshVersion, utils } from '@as/ui-react-core';
 
 import * as ResourcesActions from './resources.action';
@@ -25,6 +24,7 @@ const useGetResources = (resourceName: string, payload: any, params: any) => {
   const refreshVersion = useRefreshVersion(); // used to allow force reload
 
   const data = useSelector((state) => lodGet(state, [resourceName, 'resources', 'data']));
+  const ids = useSelector((state) => lodGet(state, [resourceName, 'resources', 'ids']));
   const isLoading = useSelector((state) => lodGet(state, [resourceName, 'resources', 'isLoading']));
   const pagination = useSelector((state) =>
     lodGet(state, [resourceName, 'resources', 'pagination'])
@@ -34,12 +34,17 @@ const useGetResources = (resourceName: string, payload: any, params: any) => {
     lodGet(state, [resourceName, 'resources', 'customError'])
   );
 
-  // refreshVersion: refetch everywhere's application using refreshVersion including this hook's api
+  // refreshVersion: refetch everywhere of application using refreshVersion including this hook's api
   // innerVersion: refetch only this hook's api
   const [innerVersion, setInnerVersion] = useState(0);
   const requestSignature = JSON.stringify({
     refreshVersion,
     innerVersion,
+    page: params.page,
+    limit: params.limit,
+    sort: params.sort,
+    search: params.search,
+    filter: params.filter,
   });
 
   const refetch = useCallback(() => {
@@ -66,16 +71,16 @@ const useGetResources = (resourceName: string, payload: any, params: any) => {
       customError,
       refetch,
     }));
-  }, [isLoading, error, customError, refetch, setState]);
+  }, [isLoading, error, customError, refetch, setState]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Reload data
   useEffect(() => {
     dispatch(
       ResourcesActions.getResources(resourceName, payload, {
-        next: (err: any, peeledData: any, response: any) => {
+        next: (err: any) => {
           if (!err) {
             setState((prevState) => ({
               ...prevState,
-              data: peeledData,
               isDataSet: true,
             }));
           }
@@ -83,9 +88,14 @@ const useGetResources = (resourceName: string, payload: any, params: any) => {
         ...params,
       })
     );
-  }, [requestSignature, params.page, params.limit, params.sort, dispatch, setState]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [requestSignature, dispatch, setState]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return state;
+  const dataList = useMemo(() => ids.map((id: string | number) => data[id]), [ids, data]);
+
+  return {
+    ...state,
+    dataList,
+  };
 };
 
 export default useGetResources;

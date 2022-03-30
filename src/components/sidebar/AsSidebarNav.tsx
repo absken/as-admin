@@ -31,6 +31,7 @@ export const AsSidebarNav = forwardRef<HTMLUListElement, AsSidebarNavProps>(
       'sidebar-nav relative flex flex-1 flex-col p-0 mb-0 overflow-x-hidden overflow-y-auto border-r border-gray-200 pt-3 pb-3 px-3',
       className
     );
+
     return (
       <ul className={classes} ref={ref} {...rest}>
         <AsSidebarNavContext.Provider value={asNavContextValues}>

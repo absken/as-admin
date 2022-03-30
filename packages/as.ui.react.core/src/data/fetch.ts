@@ -3,6 +3,7 @@ import lodIsPlainObject from 'lodash/isPlainObject';
 import HttpError from './HttpError';
 import { setToken, getToken } from '../auth';
 import { ApiCallOptions } from '../types';
+import { getQueryString } from '../utils';
 
 export const createHeadersFromOptions = (
   method: string | undefined,
@@ -40,8 +41,8 @@ export const fetchJson = (url: string, method?: string, data?: any, options?: Ap
   const queryFromUrl = urlObj.searchParams.toString();
 
   if (options && options.query && lodIsPlainObject(options.query)) {
-    const queryParams = new URLSearchParams(options.query);
-    let query = queryParams.toString();
+    let query = getQueryString(options.query);
+
     if (query) {
       query = queryFromUrl ? `${queryFromUrl}&${query}` : `?${query}`;
     }

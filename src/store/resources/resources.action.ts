@@ -13,12 +13,14 @@ import { SideEffectParams } from '../types';
 
 export const RESET_RESOURCES = '[Resources] Reset Entities';
 export const CLEAR_RESOURCES_ERROR = '[Resources] Clear Entities Error';
+export const CLEAR_RESOURCES_CSV = '[Resources] Clear Entities CSV';
 export const RESOURCES_FAILURE = '[Resources] Fetch Entities Failure';
 export const RESOURCES_FAILURE_CUSTOM = '[Resources] Fetch Entities Failure Custom';
 export const REQUEST_RESOURCES = '[Resources] Request Entities';
 export const REQUEST_RESOURCES_SUCCESS = '[Resources] Request Entities Success';
-export const ACCUMULATE_RESOURCES = '[Resources] Accumulate Entities';
-export const ACCUMULATE_RESOURCES_SUCCESS = '[Resources] Accumulate Entities Success';
+export const REQUEST_RESOURCES_CSV = '[Resources] Request Entities CSV';
+export const REQUEST_RESOURCES_CSV_SUCCESS = '[Resources] Request Entities CSV Success';
+export const UPDATE_RESOURCES = '[Resources] Update Entities';
 export const DELETE_RESOURCES = '[Resources] Delete Entities';
 export const DELETE_RESOURCES_SUCCESS = '[Resources] Delete Entities Success';
 
@@ -29,6 +31,11 @@ export interface ResetResourcesAction {
 
 export interface ClearResourcesErrorAction {
   readonly type: typeof CLEAR_RESOURCES_ERROR;
+  readonly name: string;
+}
+
+export interface ClearResourcesCsvAction {
+  readonly type: typeof CLEAR_RESOURCES_CSV;
   readonly name: string;
 }
 
@@ -58,14 +65,20 @@ export interface RequestResourcesSuccessAction {
   readonly payload: any;
 }
 
-export interface AccumulateResourcesAction {
-  readonly type: typeof ACCUMULATE_RESOURCES;
+export interface RequestResourcesCsvAction {
+  readonly type: typeof REQUEST_RESOURCES_CSV;
   readonly name: string;
   readonly payload: any;
 }
 
-export interface AccumulateResourcesSuccessAction {
-  readonly type: typeof ACCUMULATE_RESOURCES_SUCCESS;
+export interface RequestResourcesCsvSuccessAction {
+  readonly type: typeof REQUEST_RESOURCES_CSV_SUCCESS;
+  readonly name: string;
+  readonly payload: any;
+}
+
+export interface UpdateResourcesAction {
+  readonly type: typeof UPDATE_RESOURCES;
   readonly name: string;
   readonly payload: any;
 }
@@ -85,12 +98,14 @@ export interface DeleteResourcesSuccessAction {
 export type ResourcesActionTypes =
   | ResetResourcesAction
   | ClearResourcesErrorAction
+  | ClearResourcesCsvAction
   | ResourcesFailureAction
   | ResourcesFailureCustomAction
   | RequestResourcesAction
   | RequestResourcesSuccessAction
-  | AccumulateResourcesAction
-  | AccumulateResourcesSuccessAction
+  | RequestResourcesCsvAction
+  | RequestResourcesCsvSuccessAction
+  | UpdateResourcesAction
   | DeleteResourcesAction
   | DeleteResourcesSuccessAction;
 
@@ -101,6 +116,11 @@ export const resetResourcesAction = (name: string) => ({
 
 export const clearResourcesErrorAction = (name: string) => ({
   type: CLEAR_RESOURCES_ERROR,
+  name,
+});
+
+export const clearResourcesCsvAction = (name: string) => ({
+  type: CLEAR_RESOURCES_CSV,
   name,
 });
 
@@ -130,21 +150,22 @@ export const requestResourcesSuccessAction = (name: string, data: any, paginatio
   payload: { data, pagination },
 });
 
-export const accumulateResourcesAction = (
-  name: string,
-  page: number,
-  url: string,
-  params: any
-) => ({
-  type: ACCUMULATE_RESOURCES,
+export const requestResourcesCsvAction = (name: string, url: string, params: any) => ({
+  type: REQUEST_RESOURCES_CSV,
   name,
-  payload: { page, url, params },
+  payload: { url, params },
 });
 
-export const accumulateResourcesSuccessAction = (name: string, data: any) => ({
-  type: ACCUMULATE_RESOURCES_SUCCESS,
+export const requestResourcesCsvSuccessAction = (name: string, data: any) => ({
+  type: REQUEST_RESOURCES_CSV_SUCCESS,
   name,
   payload: { data },
+});
+
+export const updateResourcesAction = (name: string, data: any, idx: string[] | number[]) => ({
+  type: UPDATE_RESOURCES,
+  name,
+  payload: { data, idx },
 });
 
 export const deleteResourcesAction = (name: string, ids: string[] | number[], url: string) => ({
@@ -163,21 +184,13 @@ export const deleteResourcesSuccessAction = (name: string, ids: string[] | numbe
 // Side effects
 //-------------------------------------------------------------------------
 export const getResources =
-  (name: string, payload: any = {}, params: SideEffectParams = { next: () => {} }) =>
+  (name: string, payload: any, params: SideEffectParams = { next: () => {} }) =>
   (dispatch: Dispatch<any>, getState: () => CoreState) => {
-    const {
-      page = 1,
-      limit,
-      filter,
-      select,
-      sort,
-      accumulate = false,
-      fetchOptions = {},
-      next,
-    } = params;
+    const { page = 1, limit, select, sort, search, filter, fetchOptions = {}, next } = params;
     const url = `${appConfig.app.projectUrl}/${name}`;
     const {
       limit: sLimit,
+      search: sSearch,
       filter: sFilter,
       select: sSelect,
       sort: sSort,
@@ -186,7 +199,9 @@ export const getResources =
     const finalLimit = limit || sLimit;
     const finalSelect = select || sSelect;
     const finalSort = sort || sSort;
-    const requestParams = { ...filter, ...sFilter };
+    const finalSearch = search || sSearch;
+    const finalFilter = filter || sFilter;
+    const requestParams: { [key: string]: any } = {};
 
     if (page) {
       requestParams.page = page;
@@ -194,29 +209,37 @@ export const getResources =
       delete requestParams.page;
     }
 
-    if (limit) {
+    if (finalLimit) {
       requestParams.limit = finalLimit;
     } else {
       delete requestParams.limit;
     }
 
-    if (select) {
+    if (!lodIsEmpty(finalSelect)) {
       requestParams.select = finalSelect;
     } else {
       delete requestParams.select;
     }
 
-    if (sort) {
+    if (!lodIsEmpty(finalSort)) {
       requestParams.sort = finalSort;
     } else {
       delete requestParams.sort;
     }
 
-    if (accumulate) {
-      dispatch(accumulateResourcesAction(name, page, url, requestParams));
+    if (!lodIsEmpty(finalSearch)) {
+      requestParams.search = finalSearch;
     } else {
-      dispatch(requestResourcesAction(name, page, url, requestParams));
+      delete requestParams.search;
     }
+
+    if (!lodIsEmpty(finalFilter)) {
+      requestParams.filter = finalFilter;
+    } else {
+      delete requestParams.filter;
+    }
+
+    dispatch(requestResourcesAction(name, page, url, requestParams));
 
     return fetchUtils
       .fetchJson(url, 'GET', payload, { query: requestParams, fetchOptions })
@@ -233,11 +256,7 @@ export const getResources =
             total: respData.zCount,
           };
 
-          if (accumulate) {
-            dispatch(accumulateResourcesSuccessAction(name, peeledData));
-          } else {
-            dispatch(requestResourcesSuccessAction(name, peeledData, pagination));
-          }
+          dispatch(requestResourcesSuccessAction(name, peeledData, pagination));
 
           // sync resource state
           const resourceState = selectResource(name, getState());
@@ -249,7 +268,7 @@ export const getResources =
             }
           }
 
-          next(null, peeledData, response);
+          next(null, selectResources(name, getState()), response);
         } else {
           dispatch(resourcesFailureCustomAction(name, respJson));
           next(respJson);
@@ -261,13 +280,71 @@ export const getResources =
       });
   };
 
-export const deleteResources = (name: string, payload: any = {}, params: any = {}) => {
+export const getResourcesCsv =
+  (name: string, payload: any, params: SideEffectParams = { next: () => {} }) =>
+  (dispatch: Dispatch<any>, getState: () => CoreState) => {
+    const { sort, search, filter, fetchOptions = {}, next } = params;
+    const url = `${appConfig.app.projectUrl}/${name}/csv`;
+    const { sort: sSort, search: sSearch, filter: sFilter } = selectResources(name, getState());
+
+    const finalSort = sort || sSort;
+    const finalSearch = search || sSearch;
+    const finalFilter = filter || sFilter;
+    const requestParams: { [key: string]: any } = {};
+
+    if (!lodIsEmpty(finalSort)) {
+      requestParams.sort = finalSort;
+    } else {
+      delete requestParams.sort;
+    }
+
+    if (!lodIsEmpty(finalSearch)) {
+      requestParams.search = finalSearch;
+    } else {
+      delete requestParams.search;
+    }
+
+    if (!lodIsEmpty(finalFilter)) {
+      requestParams.filter = finalFilter;
+    } else {
+      delete requestParams.filter;
+    }
+
+    dispatch(requestResourcesCsvAction(name, url, requestParams));
+
+    return fetchUtils
+      .fetchJson(url, 'GET', payload, { query: requestParams, fetchOptions })
+      .then((response) => {
+        const respJson = response.json;
+        const respData = respJson && respJson.data;
+
+        if (respJson.status === 'success') {
+          const keys = lodKeys(respData);
+          const peeledData = respData[keys[0]];
+
+          dispatch(requestResourcesCsvSuccessAction(name, peeledData));
+
+          next(null, selectResources(name, getState()), response);
+          dispatch(clearResourcesCsvAction(name));
+        } else {
+          dispatch(resourcesFailureCustomAction(name, respJson));
+          next(respJson);
+        }
+      })
+      .catch((error) => {
+        dispatch(resourcesFailureAction(name, error));
+        next(error);
+      });
+  };
+
+export const deleteResources = (name: string, payload: any, params: any = {}) => {
   // eslint-disable-next-line consistent-return
   return (dispatch: Dispatch<any>, getState: () => CoreState) => {
     const { undoable = true } = params;
     const url = `${appConfig.app.projectUrl}/${name}/delete?ids=${payload.ids.join(',')}`;
     const resourcesState = selectResources(name, getState());
     const previousRecords: any[] = [];
+    const previousIds = resourcesState.ids;
     payload.ids.forEach((id: string | number) => previousRecords.push(resourcesState.data[id]));
 
     const resourceState = selectResource(name, getState());
@@ -305,7 +382,7 @@ export const deleteResources = (name: string, payload: any = {}, params: any = {
         }
       },
       undoDispatch: () => {
-        dispatch(accumulateResourcesSuccessAction(name, previousRecords));
+        dispatch(updateResourcesAction(name, previousRecords, previousIds));
         // sync resource state
         if (previousRecord && !lodIsEmpty(previousRecord)) {
           dispatch(

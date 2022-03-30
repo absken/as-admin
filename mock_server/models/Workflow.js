@@ -19,4 +19,11 @@ const workflowSchema = new mongoose.Schema({
   },
 });
 
+workflowSchema.index({
+  id: 'text',
+  firstName: 'text',
+  lastName: 'text',
+  age: 'text',
+});
+
 module.exports = mongoose.model('Workflow', workflowSchema);

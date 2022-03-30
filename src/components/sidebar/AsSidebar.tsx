@@ -89,12 +89,13 @@ export const AsSidebar = forwardRef<HTMLDivElement, AsSidebarProps>(
       typeof inViewport !== 'undefined' && onVisibleChange && onVisibleChange(inViewport);
       !inViewport && onHide && onHide();
       inViewport && onShow && onShow();
-    }, [inViewport]);
+    }, [inViewport]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
       mobile && visible && setVisible(false);
-    }, [mobile]);
+    }, [mobile]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
       sidebarRef.current && setMobile(isOnMobile(sidebarRef.current));
       sidebarRef.current && setInViewport(isVisible(sidebarRef.current));
@@ -115,10 +116,10 @@ export const AsSidebar = forwardRef<HTMLDivElement, AsSidebarProps>(
 
         sidebarRef.current?.removeEventListener('mouseup', handleOnClick);
         sidebarRef.current?.removeEventListener('transitionend', () => {
-          sidebarRef.current && setInViewport(isVisible(sidebarRef.current));
+          sidebarRef.current && setInViewport(isVisible(sidebarRef.current)); // eslint-disable-line react-hooks/exhaustive-deps
         });
       };
-    });
+    }); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleHide = () => {
       setVisible(false);

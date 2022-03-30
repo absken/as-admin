@@ -50,7 +50,7 @@ export const AsSidebarNavLink = forwardRef<
     // eslint-disable-next-line no-param-reassign
     rest.active = navLinkRef.current?.classList.contains('active');
     idx && rest.active && setVisibleGroup(idx);
-  }, [rest.active, className]);
+  }, [rest.active, className]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <AsLink className={classNameInner} {...rest} ref={forkedRef}>
