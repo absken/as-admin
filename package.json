@@ -67,10 +67,13 @@
     "build-packages": "cd packages/as.ui.react.core && yarn run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "yarn run build-packages && cd mock_server && npm install",
+    "postinstall": "cd mock_server && npm install",
     "lint": "eslint --ext .js,.ts,.tsx \"./packages/**/src/**/*.{js,ts,tsx}\"",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean": "yarn run clean-root && yarn run clean-packages ",
+    "clean-root": "rm -rf node_modules",
+    "clean-packages": "cd packages/as.ui.react.core && rm -rf node_modules"
   },
   "eslintConfig": {
     "extends": [

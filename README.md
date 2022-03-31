@@ -66,6 +66,9 @@ $ yarn install
 Run `build` to build the project. The build artifacts will be stored in the `build/` directory.
 
 ```bash
+# build private packages
+$ yarn run build-packages
+
 # build for production with minification
 $ yarn run build
 ```

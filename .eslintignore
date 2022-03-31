@@ -1,4 +1,5 @@
 node_modules
+mock_server
 build
 lib
 esm
