@@ -20,7 +20,7 @@ pipeline {
     stage('install-modules') {
       steps {
         sh '''
-          npm install -g yarn
+          sudo npm install -g yarn
           yarn run clean
           yarn install
 
