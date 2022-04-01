@@ -20,9 +20,10 @@ pipeline {
     stage('install-modules') {
       steps {
         sh '''
-          sudo npm install -g yarn
           yarn run clean
-          yarn install
+          npm install
+          npm run clean-packages
+          npm run yarninstall
 
         '''
       }
@@ -50,7 +51,7 @@ pipeline {
       steps {
         withFolderProperties {
           sh '''
-            echo 'Scanning...'
+            node ./bin/sonar-scan.js $GIT_BRANCH
 
           '''
         }

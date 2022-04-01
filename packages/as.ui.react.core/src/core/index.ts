@@ -7,8 +7,8 @@ export {
   AppCore,
   AppCoreContext,
   createAppCoreStore,
-  CoreState,
-  AppThunk,
   getHistoryInstance,
   getStoredHistoryInstance,
 };
+
+export type { CoreState, AppThunk };

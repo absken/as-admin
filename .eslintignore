@@ -7,3 +7,4 @@ prism.js
 .eslintrc.js
 tailwind.config.js
 postcss.config.js
+bin
