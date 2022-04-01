@@ -20,7 +20,7 @@ pipeline {
     stage('install-modules') {
       steps {
         sh '''
-          yarn run clean
+          npm run clean
           npm install
           npm run clean-packages
           npm run yarninstall
@@ -31,7 +31,7 @@ pipeline {
     stage('lint') {
       steps {
         sh '''
-          yarn run lint
+          npm run lint
 
         '''
       }
@@ -39,7 +39,7 @@ pipeline {
     stage('test') {
       steps {
         sh '''
-          yarn run test
+          npm run test
 
         '''
       }
@@ -60,7 +60,7 @@ pipeline {
     stage('build') {
       steps {
         sh '''
-          yarn run build
+          npm run build
 
         '''
       }
