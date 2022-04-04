@@ -21,8 +21,8 @@ pipeline {
       steps {
         sh '''
           npm run clean
-          npm install
           npm run clean-packages
+          npm install yarn@^1.22.18 --save-dev
           npm run yarninstall
 
         '''
