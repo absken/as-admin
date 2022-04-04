@@ -40,7 +40,7 @@ pipeline {
     stage('test') {
       steps {
         sh '''
-          npm run test
+          npm test -- --watchAll=false
 
         '''
       }
