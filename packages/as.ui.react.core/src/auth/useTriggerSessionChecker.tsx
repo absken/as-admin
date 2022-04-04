@@ -3,15 +3,15 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { MdLogout, MdOutlinePlayCircleOutline } from 'react-icons/md';
 import SessionTimeoutTimer from './SessionTimeoutTimer';
 import { AuthActions, ConfirmActions } from '../store';
 import { getToken } from './tokenService';
 import useLogout from './useLogout';
-import { MdLogout, MdOutlinePlayCircleOutline } from 'react-icons/md';
 import { useTranslate } from '../i18n';
 import { SessionCheckerContentProps } from '../types';
 
-const SessionCheckerContent = (props: SessionCheckerContentProps) => {
+function SessionCheckerContent(props: SessionCheckerContentProps) {
   const { expiryTimestamp, onExpire, pauseRef } = props;
 
   const translate = useTranslate();
@@ -29,12 +29,12 @@ const SessionCheckerContent = (props: SessionCheckerContentProps) => {
       {translate('app.auth.sessionChecker.content.selectContinueSession')}
     </span>
   );
-};
+}
 
 SessionCheckerContent.propTypes = {
   expiryTimestamp: PropTypes.instanceOf(Date),
   onExpire: PropTypes.func,
-  pauseRef: PropTypes.object,
+  pauseRef: PropTypes.objectOf(PropTypes.any),
 };
 
 const timeoutRef = { ref: null };
@@ -87,7 +87,7 @@ const useTriggerSessionChecker = () => {
     const interval = tokenInfo.intervalForAlert;
     const expirationDatetime = tokenInfo.tokenExpirationDatetime;
 
-    //5sec for making sure process happens
+    // 5sec for making sure process happens
     if (interval <= 5000) {
       if (new Date() > expirationDatetime) {
         terminateSession(true);

@@ -1,4 +1,4 @@
-//general configuration constants
+// general configuration constants
 import { ReactNode } from 'react';
 import { CustomInterceptor } from '../types';
 
@@ -41,7 +41,7 @@ const defaultConfig = {
     authKey: 'AbsUser',
     tokenName: 'AbsToken',
     timeToLiveSeconds: 1800, // 1800
-    secondsLeftBeforeSessionTimeout: 300, //300
+    secondsLeftBeforeSessionTimeout: 300, // 300
   },
   events: {
     data: {

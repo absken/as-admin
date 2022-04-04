@@ -4,16 +4,17 @@ import { useTimer } from 'react-timer-hook';
 
 import { SessionCheckerContentProps } from '../types';
 
-const SessionTimeoutTimer = (props: SessionCheckerContentProps) => {
+function SessionTimeoutTimer(props: SessionCheckerContentProps) {
   const {
     expiryTimestamp,
     pauseRef,
     onExpire = () => {
+      // eslint-disable-next-line no-console
       console.warn('onExpire called on React Timer Hook');
     },
   } = props;
 
-  const { pause, seconds, minutes } = useTimer({ expiryTimestamp, onExpire: onExpire });
+  const { pause, seconds, minutes } = useTimer({ expiryTimestamp, onExpire });
 
   pauseRef.current = pause;
 
@@ -22,12 +23,12 @@ const SessionTimeoutTimer = (props: SessionCheckerContentProps) => {
       <span>{minutes}m</span> <span>{seconds}s</span>
     </span>
   );
-};
+}
 
 SessionTimeoutTimer.propTypes = {
   expiryTimestamp: PropTypes.instanceOf(Date),
   onExpire: PropTypes.func,
-  pauseRef: PropTypes.object,
+  pauseRef: PropTypes.objectOf(PropTypes.any),
 };
 
 export default SessionTimeoutTimer;

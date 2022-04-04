@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CoreProps } from '../types';
 import AppCoreContext from './AppCoreContext';
 
-const AppCore = (props: CoreProps) => {
+function AppCore(props: CoreProps) {
   const {
     children,
     history,
@@ -27,16 +27,16 @@ const AppCore = (props: CoreProps) => {
       {children}
     </AppCoreContext>
   );
-};
+}
 
 AppCore.propTypes = {
   children: PropTypes.node,
-  history: PropTypes.object,
-  initialState: PropTypes.object,
-  appCustomReducers: PropTypes.object,
+  history: PropTypes.objectOf(PropTypes.any),
+  initialState: PropTypes.objectOf(PropTypes.any),
+  appCustomReducers: PropTypes.objectOf(PropTypes.any),
   appCustomInterceptor: PropTypes.func,
-  appConfig: PropTypes.object,
-  appNavigation: PropTypes.array,
+  appConfig: PropTypes.objectOf(PropTypes.any),
+  appNavigation: PropTypes.arrayOf(PropTypes.any),
 };
 
 export default AppCore;

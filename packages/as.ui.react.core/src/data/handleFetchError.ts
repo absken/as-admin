@@ -23,6 +23,7 @@ const handleFetchError = (dispatch: Dispatch<any>, action: any) => {
               search: '',
             };
             if (redirectToParts[1]) {
+              // eslint-disable-next-line prefer-destructuring
               newLocation.search = redirectToParts[1];
             }
             history && history.push(newLocation);

@@ -10,7 +10,8 @@ export const getNavVisibleInfoFromPathname = (pathname: string) => {
   let matchedActiveKey = 1;
 
   if (items) {
-    for (let i in items) {
+    // eslint-disable-next-line guard-for-in,no-restricted-syntax
+    for (const i in items) {
       const item = items[i];
 
       if (item.items) {
@@ -19,7 +20,8 @@ export const getNavVisibleInfoFromPathname = (pathname: string) => {
           matchedActiveKey = 1;
           break;
         }
-        for (let j in item.items) {
+        // eslint-disable-next-line guard-for-in,no-restricted-syntax
+        for (const j in item.items) {
           const subItem = item.items[j];
           if (subItem.to && pathname.startsWith(subItem.to)) {
             matchedVisibleGroup = item.visibleGroup;

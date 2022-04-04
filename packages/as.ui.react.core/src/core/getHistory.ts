@@ -6,12 +6,12 @@ const getHistoryInstance = (customHistory?: History) => {
   const history = customHistory || createHashHistory();
 
   if (history) {
-    historyStore['history'] = history;
+    historyStore.history = history;
   }
 
   return history;
 };
 
-const getStoredHistoryInstance = () => historyStore['history'];
+const getStoredHistoryInstance = () => historyStore.history;
 
 export { getHistoryInstance, getStoredHistoryInstance };

@@ -25,18 +25,17 @@ const getPolygolotI18nProvider = (
     translate: (key: string, options?: object) => {
       if (lodIsEmpty(polyglot.phrases) || !key) {
         return key;
-      } else {
-        return translate(key, options);
       }
+      return translate(key, options);
     },
     changeLocale: (newLocale: string) =>
       // We systematically return a Promise for the messages because
       // getMessages may return a Promise
-      Promise.resolve(getMessages(newLocale)).then((messages) => {
+      Promise.resolve(getMessages(newLocale)).then((msg) => {
         locale = newLocale;
         const newPolyglot = new Polyglot({
           locale: newLocale,
-          phrases: { ...messages },
+          phrases: { ...msg },
           ...polyglotOptions,
         });
         polyglot = newPolyglot;

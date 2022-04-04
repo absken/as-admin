@@ -1,5 +1,5 @@
 import defaultI18nProvider, { defaultMessageResource } from './defaultI18nProvider';
-import { TranslationContext } from './TranslationContext';
+import { TranslationContext, TranslationContextProps } from './TranslationContext';
 import TranslationProvider from './TranslationProvider';
 import useLocale from './useLocale';
 import useSetLocale from './useSetLocale';
@@ -17,7 +17,8 @@ export {
   useCallAndRefreshI18nProviderMethod,
 };
 
+export type { TranslationContextProps };
+
 export const DEFAULT_LOCALE = 'en';
 
 export * from './utilsTranslation';
-export * from './TranslationContext';

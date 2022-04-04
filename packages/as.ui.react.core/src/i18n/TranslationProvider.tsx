@@ -10,7 +10,7 @@ export interface TranslationProviderProps {
   children: ReactNode;
 }
 
-const TranslationProvider = (props: TranslationProviderProps) => {
+function TranslationProvider(props: TranslationProviderProps) {
   const { i18nProvider, children } = props;
   const [state, setState] = useSafeSetState({
     locale: i18nProvider ? i18nProvider.getLocale() : 'en',
@@ -19,12 +19,12 @@ const TranslationProvider = (props: TranslationProviderProps) => {
   });
 
   const setLocale = useCallback(
-    (newLocale) => setState((state) => ({ ...state, locale: newLocale })),
+    (newLocale) => setState((prevState) => ({ ...prevState, locale: newLocale })),
     [setState]
   );
 
   const refreshI18n = useCallback(() => {
-    setState((state) => ({ ...state, innerVersion: state.innerVersion + 1 }));
+    setState((prevState) => ({ ...prevState, innerVersion: prevState.innerVersion + 1 }));
   }, [setState]);
 
   // Allow locale modification by including setLocale in the context
@@ -39,10 +39,10 @@ const TranslationProvider = (props: TranslationProviderProps) => {
   );
 
   return <TranslationContext.Provider value={value}>{children}</TranslationContext.Provider>;
-};
+}
 
 TranslationProvider.propTypes = {
-  i18nProvider: PropTypes.object,
+  i18nProvider: PropTypes.objectOf(PropTypes.any),
   children: PropTypes.node,
 };
 

@@ -21,7 +21,7 @@ const getStyle = (property: string, element = document.body) => {
 const getColor = (rawProperty: string, element = document.body) => {
   const property = `--${rawProperty}`;
   const style = getStyle(property, element);
-  return style ? style : rawProperty;
+  return style || rawProperty;
 };
 
 /* eslint-disable no-magic-numbers */
@@ -106,13 +106,17 @@ const rgbToHex = (color: any) => {
 };
 
 const darken = (color: any, coefficient: number) => {
+  // eslint-disable-next-line no-param-reassign
   color = decomposeColor(color);
+  // eslint-disable-next-line no-param-reassign
   coefficient = clamp(coefficient);
 
   if (color.type.indexOf('hsl') !== -1) {
+    // eslint-disable-next-line no-param-reassign
     color.values[2] *= 1 - coefficient;
   } else if (color.type.indexOf('rgb') !== -1 || color.type.indexOf('color') !== -1) {
     for (let i = 0; i < 3; i += 1) {
+      // eslint-disable-next-line no-param-reassign
       color.values[i] *= 1 - coefficient;
     }
   }
@@ -192,6 +196,7 @@ function recomposeColor(color: any) {
 
 function clamp(value: any, min = 0, max = 1) {
   if (value < min || value > max) {
+    // eslint-disable-next-line no-console
     console.error(`The value provided ${value} is out of range [${min}, ${max}].`);
   }
 

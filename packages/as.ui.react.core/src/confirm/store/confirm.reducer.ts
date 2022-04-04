@@ -10,9 +10,10 @@ const confirmReducer = (
   state: ConfirmState = initialState,
   action: ConfirmActions.ConfirmActionTypes
 ) => {
+  let newConfirmOptions;
   switch (action.type) {
     case ConfirmActions.SHOW_CONFIRM:
-      const newConfirmOptions = {
+      newConfirmOptions = {
         ...action.payload.confirmOptions,
         title: action.payload.title,
         content: action.payload.content,

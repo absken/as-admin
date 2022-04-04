@@ -7,9 +7,9 @@ const getCssCustomProperties = (): any => {
   const cssCustomProperties = {};
   const sheets = document.styleSheets;
   let cssText = '';
-  for (let i = sheets.length - 1; i > -1; i--) {
+  for (let i = sheets.length - 1; i > -1; i -= 1) {
     const rules = sheets[i].cssRules;
-    for (let j = rules.length - 1; j > -1; j--) {
+    for (let j = rules.length - 1; j > -1; j -= 1) {
       // @ts-ignore
       if (rules[j].selectorText === '.ie-custom-properties') {
         // eslint-disable-next-line prefer-destructuring

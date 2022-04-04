@@ -3,8 +3,11 @@ import { defaultConfig } from '../config';
 
 class Token {
   _secondsLeftBeforeSessionTimeout: number;
+
   _token: string;
+
   _lastAccessDatetime: Date;
+
   _timeToLiveSeconds: number;
 
   constructor(
@@ -40,7 +43,8 @@ class Token {
 }
 
 export const setToken = (token = '', timeToLiveSeconds?: number | string | null) => {
-  const tokenName = defaultConfig.auth.tokenName;
+  const { tokenName } = defaultConfig.auth;
+  // eslint-disable-next-line no-param-reassign
   timeToLiveSeconds = timeToLiveSeconds ?? defaultConfig.auth.timeToLiveSeconds;
 
   if (!token) {
@@ -54,7 +58,8 @@ export const setToken = (token = '', timeToLiveSeconds?: number | string | null)
   }
 
   // token, lastAccessDatetime, and timeToLiveSeconds datetime combination
-  token = token + '|' + new Date().toISOString() + '|' + timeToLiveSeconds;
+  // eslint-disable-next-line no-param-reassign
+  token = `${token}|${new Date().toISOString()}|${timeToLiveSeconds}`;
 
   // iOS in private browse mode will throw an error but we can't detect ahead of time that we are in private mode.
   try {
@@ -65,7 +70,7 @@ export const setToken = (token = '', timeToLiveSeconds?: number | string | null)
 };
 
 export const getToken = (): any => {
-  const tokenName = defaultConfig.auth.tokenName;
+  const { tokenName } = defaultConfig.auth;
   let token;
 
   try {

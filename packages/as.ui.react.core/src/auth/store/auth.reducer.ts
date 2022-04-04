@@ -50,7 +50,7 @@ const authReducer = (state: AuthState = initialState, action: AuthActions.AuthAc
       return {
         ...state,
         isLoading: false,
-        //is: getUserRoles(state.roles),
+        // is: getUserRoles(state.roles),
         error: action.payload.error,
       };
 
@@ -83,7 +83,7 @@ const authReducer = (state: AuthState = initialState, action: AuthActions.AuthAc
         isLoading: false,
         user: action.payload.user,
         authenticated: true,
-        //is: mapProjectRolesToUserRoles(state.roles, action.user.roles),
+        // is: mapProjectRolesToUserRoles(state.roles, action.user.roles),
         error: null,
         customError: null,
       };

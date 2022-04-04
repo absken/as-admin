@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useContext, useState } from 'react';
 import { Provider, ReactReduxContext } from 'react-redux';
-import { getHistoryInstance } from './getHistory';
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import lodMerge from 'lodash/merge';
+import { getHistoryInstance } from './getHistory';
 
 import createAppCoreStore from './createAppCoreStore';
 import { TranslationProvider, defaultI18nProvider } from '../i18n';
@@ -12,7 +12,7 @@ import { ConfigContext, defaultConfig } from '../config';
 import { NavigationContext, defaultNavigation } from '../navigation';
 import { CoreProps } from '../types';
 
-const AppCoreContext = (props: CoreProps) => {
+function AppCoreContext(props: CoreProps) {
   const {
     children,
     history,
@@ -61,19 +61,18 @@ When integrating react-admin inside an existing redux Provider, you must provide
 React-admin uses this history for its own ConnectedRouter.`);
     }
     return renderCore();
-  } else {
-    return <Provider store={store}>{renderCore()}</Provider>;
   }
-};
+  return <Provider store={store}>{renderCore()}</Provider>;
+}
 
 AppCoreContext.propTypes = {
   children: PropTypes.node,
-  history: PropTypes.object,
+  history: PropTypes.objectOf(PropTypes.any),
   initialState: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  appCustomReducers: PropTypes.object,
+  appCustomReducers: PropTypes.objectOf(PropTypes.any),
   appCustomInterceptor: PropTypes.func,
-  appConfig: PropTypes.object,
-  appNavigation: PropTypes.array,
+  appConfig: PropTypes.objectOf(PropTypes.any),
+  appNavigation: PropTypes.arrayOf(PropTypes.any),
 };
 
 export default AppCoreContext;

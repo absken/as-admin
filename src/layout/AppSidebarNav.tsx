@@ -81,6 +81,7 @@ function AppSidebarNav(props: AppSidebarNavProps) {
     const hasSubItems = !!item.items;
 
     if (hasSubItems && !visibleGroup) {
+      // eslint-disable-next-line no-console
       console.warn('Must define visibleGroup to display SubNavItems');
     }
 

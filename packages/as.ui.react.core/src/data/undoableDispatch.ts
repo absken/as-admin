@@ -45,6 +45,7 @@ const undoableDispatch = ({
 
 const warnBeforeClosingWindow = (event: BeforeUnloadEvent) => {
   event.preventDefault(); // standard
+  // eslint-disable-next-line no-param-reassign
   event.returnValue = ''; // Chrome
   return 'Your latest modifications are not yet sent to the server. Are you sure?'; // Old IE
 };

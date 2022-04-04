@@ -38,15 +38,15 @@ const useNavVisibleInfo = () => {
   const navActiveKey = useSelector((state: CoreState) => state.core.navigation.navActiveKey);
 
   const setNavVisibleGroup = useCallback(
-    (navVisibleGroup) => {
-      dispatch(NavigationActions.setNavVisibleGroupAction(navVisibleGroup));
+    (navVisibleGroupInner) => {
+      dispatch(NavigationActions.setNavVisibleGroupAction(navVisibleGroupInner));
     },
     [dispatch]
   );
 
   const setNavActiveKey = useCallback(
-    (navActiveKey) => {
-      dispatch(NavigationActions.setNavActiveKeyAction(navActiveKey));
+    (navActiveKeyInner) => {
+      dispatch(NavigationActions.setNavActiveKeyAction(navActiveKeyInner));
     },
     [dispatch]
   );

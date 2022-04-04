@@ -29,7 +29,7 @@ export interface WithPermissionsProps {
  *         } />
  *     ];
  */
-const WithPermissions = (props: WithPermissionsProps) => {
+function WithPermissions(props: WithPermissionsProps) {
   const { authParams, component, ...rest } = props;
 
   useAuthenticated(authParams);
@@ -38,10 +38,10 @@ const WithPermissions = (props: WithPermissionsProps) => {
   if (component) {
     return createElement(component, { permissions, ...rest });
   }
-};
+}
 
 WithPermissions.propTypes = {
-  authParams: PropTypes.object,
+  authParams: PropTypes.objectOf(PropTypes.any),
   component: PropTypes.elementType.isRequired,
 };
 

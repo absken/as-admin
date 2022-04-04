@@ -46,6 +46,7 @@ export const fetchJson = (url: string, method?: string, data?: any, options?: Ap
     if (query) {
       query = queryFromUrl ? `${queryFromUrl}&${query}` : `?${query}`;
     }
+    // eslint-disable-next-line no-param-reassign
     url = url.split('?')[0] + query;
   }
 
@@ -89,6 +90,7 @@ export const fetchJson = (url: string, method?: string, data?: any, options?: Ap
     })
     .catch((err) => {
       if (err.message) {
+        // eslint-disable-next-line no-param-reassign
         err.message = `Could not connect to API server (${err.message})`;
       }
 
@@ -122,7 +124,7 @@ export const flattenObject = (value: any, path: any = []): any => {
       // @ts-ignore
       ...Object.keys(value).map((key) => flattenObject(value[key], path.concat([key])))
     );
-  } else {
-    return path.length ? { [path.join('.')]: value } : value;
   }
+
+  return path.length ? { [path.join('.')]: value } : value;
 };

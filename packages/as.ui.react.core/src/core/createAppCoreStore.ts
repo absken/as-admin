@@ -1,10 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
+import { Store } from 'redux';
+import { History } from 'history';
 import coreInterceptor from '../store/coreInterceptor';
 import createAppReducer from '../store';
 import { CustomInterceptor } from '../types';
-import { Store } from 'redux';
-import { History } from 'history';
 
 interface Params {
   appCustomReducers?: any;
@@ -35,6 +35,7 @@ const createAppCoreStore = ({
     process.env.REDUX_LOGGER_OFF !== 'true' &&
     typeof window !== 'undefined'
   ) {
+    // eslint-disable-next-line global-require
     const { logger } = require(`redux-logger`);
     middleware.push(logger);
   }

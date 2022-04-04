@@ -36,11 +36,9 @@ const useLogin = () => {
     (params, pathName) =>
       dispatch(
         AuthActions.authLogin(params, (err, res) => {
-          if (err) {
-          } else {
-            const redirectUrl = pathName
-              ? pathName
-              : nextPathName + nextSearch || defaultConfig.auth.afterLoginUrl;
+          if (!err) {
+            const redirectUrl =
+              pathName || nextPathName + nextSearch || defaultConfig.auth.afterLoginUrl;
             history.push(redirectUrl);
           }
         })

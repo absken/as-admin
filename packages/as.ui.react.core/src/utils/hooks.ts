@@ -20,7 +20,7 @@ export function useForkedRef<RefValueType = any>(
         assignRef(ref, node);
       });
     };
-  }, refs);
+  }, refs); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export function assignRef<RefValueType = any>(
@@ -32,6 +32,7 @@ export function assignRef<RefValueType = any>(
     ref(value);
   } else {
     try {
+      // eslint-disable-next-line no-param-reassign
       ref.current = value;
     } catch (error) {
       throw new Error(`Cannot assign value "${value}" to ref "${ref}"`);
@@ -40,7 +41,7 @@ export function assignRef<RefValueType = any>(
 }
 
 export function isFunction(value: any): value is Function {
-  return !!(value && {}.toString.call(value) == '[object Function]');
+  return !!(value && {}.toString.call(value) === '[object Function]');
 }
 
 export function useSafeSetState<T>(
@@ -60,6 +61,7 @@ export function useSafeSetState<T>(
       if (mountedRef.current) {
         return setState(args);
       }
+      return null;
     },
     [mountedRef, setState]
   );

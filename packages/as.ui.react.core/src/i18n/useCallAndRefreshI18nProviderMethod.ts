@@ -23,6 +23,7 @@ const useCallAndRefreshI18nProviderMethod = () => {
       new Promise((resolve) => {
         startLoading();
         // @ts-ignore
+        // eslint-disable-next-line prefer-spread
         resolve(i18nProvider[method].apply(i18nProvider, paramArray));
       })
         .then(() => {

@@ -8,9 +8,10 @@ const notificationsReducer = (
   state: NotificationState = initialState,
   action: NotificationsActions.NotificationsActionTypes
 ) => {
+  let newNotificationOptions;
   switch (action.type) {
     case NotificationsActions.SHOW_NOTIFICATION:
-      const newNotificationOptions = {
+      newNotificationOptions = {
         ...action.payload.notificationOptions,
         type: action.payload.type,
         message: action.payload.message,

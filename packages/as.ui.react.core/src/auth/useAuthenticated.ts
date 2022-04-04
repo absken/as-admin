@@ -37,8 +37,7 @@ const useAuthenticated = (
   useEffect(() => {
     dispatch(
       AuthActions.authLoginCheck(params, (err) => {
-        if (!err) {
-        } else {
+        if (err) {
           if (logoutOnFailure) {
             logout({}, err && err.redirectTo ? err.redirectTo : redirectTo);
           }

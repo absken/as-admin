@@ -22,6 +22,7 @@ pipeline {
         sh '''
           npm run clean
           npm run clean-packages
+          rm -rf mock_server
           npm install yarn@^1.22.18 --save-dev
           npm run yarninstall
 
