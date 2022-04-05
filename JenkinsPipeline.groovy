@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'master'}
+  agent any
   parameters {
     booleanParam(name: 'SCAN', defaultValue: true, description: 'Sonar scan branch')
     booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy to environment')
